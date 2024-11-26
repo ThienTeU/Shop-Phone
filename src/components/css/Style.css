@@ -2,19 +2,16 @@
 
 /* Footer */
 .footer {
-  background-color: #333;
-  color: #fff;
+  background-color: rgb(13, 110, 253);
+  color: black;
   margin: 0;
   padding: 0;
 }
 
-.footer h3 {
-  color: #fff;
+.footer h3,p {
+  color: white;
 }
 
-.footer p {
-  color: #ccc;
-}
 
 .footer .social-icons li {
   display: inline-block;
@@ -55,7 +52,7 @@
 }
 
 .copy-right {
-  background-color: black;
+  color: black;
 }
 
 .btn-pink {
@@ -383,9 +380,9 @@
 }
 
 .Search-icon-user {
-  border: 1px solid blue;
+  border: 1px solid rgb(13, 110, 253);
   border-radius: 9px;
-  background-color: blue;
+  background-color: rgb(13, 110, 253);
   padding: 6px;
 }
 

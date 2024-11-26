@@ -47,12 +47,15 @@ function Header({ isLogin, setIsLogin }) {
       navigate("/auth/login");
     }
   };
+  const hanldeBackToHome = () => {
+    navigate("/home");
+  };
 
   return (
     <div>
-      <Row className="bg-dark pt-3 pb-3">
+      <Row className=" px-2">
         <Col>
-          <h2 class="m-0 display-5 font-weight-semi-bold">
+          <div className="d-flex">
             <Image
               src="/assets/images/avartashop.png"
               alt="H Logo"
@@ -60,10 +63,13 @@ function Header({ isLogin, setIsLogin }) {
               style={{ width: "75px", height: "75px" }}
               onClick={handleOpenAvatarModal}
             />
-            <a href="/productuser" class="text-decoration-none">
+            <h4
+              onClick={hanldeBackToHome}
+              class="m-2 display-5 font-weight-semi-bold"
+            >
               -Tech Store
-            </a>
-          </h2>
+            </h4>
+          </div>
           {/* show ảnh */}
           <AvatarModal
             show={showAvatarModal}
@@ -197,7 +203,6 @@ function Header({ isLogin, setIsLogin }) {
                   <Nav.Link href="/auth/login" style={{ color: "white" }}>
                     <Button
                       style={{
-                        backgroundColor: "#DA4E22",
                         padding: "10px 20px",
                       }}
                     >
@@ -209,7 +214,6 @@ function Header({ isLogin, setIsLogin }) {
                   <Nav.Link href="/auth/register" style={{ color: "white" }}>
                     <Button
                       style={{
-                        backgroundColor: "#DA4E22",
                         padding: "10px 20px",
                       }}
                     >
