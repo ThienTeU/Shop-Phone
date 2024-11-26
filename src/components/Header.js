@@ -10,6 +10,7 @@ import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import AvatarModal from "../hooks/AvatarModal";
+import { toast } from "react-toastify";
 import "./css/Style.css";
 
 function Header({ isLogin, setIsLogin }) {
@@ -34,8 +35,14 @@ function Header({ isLogin, setIsLogin }) {
   }
 
   const handleLogout = () => {
-    if (window.confirm("Bạn muốn đăng xuất tài khoản?")) {
+    if (window.confirm("Bạn muốn đăng xuất tài khoản ngay bây giờ?")) {
       setIsLogin(false);
+      toast.success(`Đăng xuất thành công!`, {
+        autoClose: 2000,
+        closeButton: false,
+        hideProgressBar: true,
+        position: "top-center",
+      });
       localStorage.removeItem("accounts");
       navigate("/productuser");
     }
@@ -44,6 +51,12 @@ function Header({ isLogin, setIsLogin }) {
   const handleChangeAccount = () => {
     if (window.confirm("Nếu bạn muốn đổi tài khoản, bạn sẽ bị đăng xuất")) {
       setIsLogin(false);
+      toast.success(`Hẹn gặp lại bạn!`, {
+        autoClose: 2000,
+        closeButton: false,
+        hideProgressBar: true,
+        position: "top-center",
+      });
       navigate("/auth/login");
     }
   };
@@ -65,11 +78,7 @@ function Header({ isLogin, setIsLogin }) {
             </a>
           </h2>
           {/* show ảnh */}
-          <AvatarModal
-            show={showAvatarModal}
-            handleClose={handleCloseAvatarModal}
-            imageSrc="/assets/images/avartashop.png"
-          />
+          <AvatarModal show={showAvatarModal} handleClose={handleCloseAvatarModal} imageSrc="/assets/images/avartashop.png" />
         </Col>
         {/* cột phải */}
         <Col className="ml-auto">
@@ -119,12 +128,7 @@ function Header({ isLogin, setIsLogin }) {
                             <SyncAltIcon /> Chuyển Tài Khoản
                           </Dropdown.Item>
                           <Dropdown.Item onClick={toggleTheme}>
-                            {toggleTheme ? (
-                              <Brightness4Icon />
-                            ) : (
-                              <Brightness7Icon />
-                            )}{" "}
-                            Mode: Sáng|Tối
+                            {toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
@@ -135,10 +139,7 @@ function Header({ isLogin, setIsLogin }) {
                 {accountRole === "user" && (
                   <>
                     <Nav.Item justify-content-center>
-                      <Nav.Link
-                        href="/order-tracking"
-                        style={{ color: "white" }}
-                      >
+                      <Nav.Link href="/order-tracking" style={{ color: "white" }}>
                         <Button
                           style={{
                             marginRight: "10px",
@@ -178,12 +179,7 @@ function Header({ isLogin, setIsLogin }) {
                             <SyncAltIcon /> Chuyển Tài Khoản
                           </Dropdown.Item>
                           <Dropdown.Item onClick={toggleTheme}>
-                            {toggleTheme ? (
-                              <Brightness4Icon />
-                            ) : (
-                              <Brightness7Icon />
-                            )}{" "}
-                            Mode: Sáng|Tối
+                            {toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
