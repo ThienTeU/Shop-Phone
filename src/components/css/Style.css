@@ -1,4 +1,4 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
 
 /* Footer */
 .footer {
@@ -6,7 +6,6 @@
   color: #fff;
   margin: 0;
   padding: 0;
-
 }
 
 .footer h3 {
@@ -47,7 +46,6 @@
   /* Khoảng cách giữa biểu tượng và chữ */
 }
 
-
 .footer .social-icons li:last-child {
   margin-right: 0;
 }
@@ -74,8 +72,6 @@
   /* Màu hồng nhạt hơn khi hover */
   border-color: #ff85c5;
 }
-
-
 
 /* Change Password */
 .container-password {
@@ -161,7 +157,6 @@
 
 /* End */
 
-
 /* Product Detail*/
 
 .product-detail {
@@ -174,7 +169,7 @@
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
-  margin-left: 15px ;
+  margin-left: 15px;
 }
 
 .product-detail .product-detail-title {
@@ -251,10 +246,10 @@
 }
 
 .similar-product {
-  width: 100%; 
+  width: 100%;
   margin: 10px;
   border: 2px solid black;
-  border-radius: 15px; 
+  border-radius: 15px;
   padding: 10px;
   text-align: center;
 }
@@ -265,18 +260,17 @@
   display: flexbox;
   align-items: center;
   justify-content: center;
-  
 }
 
 .similar-product-image {
-  width: 70%; 
+  width: 70%;
   height: 70%;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   object-fit: contain;
 }
 
 .similar-product-name {
-  font-size: 21px; 
+  font-size: 21px;
 }
 
 .product-review {
@@ -297,7 +291,7 @@
 .product-review-user {
   margin-top: 10px;
   font-style: italic;
-  color:#000000;
+  color: #000000;
 }
 
 .flash-sale-row {
@@ -359,25 +353,24 @@
 .register-form {
   flex: 1;
   min-width: 600px;
-  background-color: #FFC0CB;
+  background-color: #ffc0cb;
   color: black;
 }
 
 @media (max-width: 768px) {
   .register-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .register-image,
   .register-form {
-      min-width: 100%;
+    min-width: 100%;
   }
 }
 
-
 .iconicon {
-  color: #fff; 
-  background-color: #3b5998; 
+  color: #fff;
+  background-color: #3b5998;
   padding: 3px;
   border-radius: 50%;
   cursor: pointer;
@@ -386,7 +379,7 @@
 }
 
 .iconicon:hover {
-  background-color: #cf3838; 
+  background-color: #cf3838;
 }
 
 .Search-icon-user {
@@ -399,9 +392,9 @@
 .button-change-infor {
   color: white;
   text-decoration: none;
-  text-align: end;
-  border: 1px solid #F86338;
-  background-color: #F86338;
+  padding: 3px;
+  border: 1px solid #f86338;
+  background-color: #f86338;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -415,8 +408,8 @@
   color: white;
   text-decoration: none;
   text-align: end;
-  border: 1px solid #F86338;
-  background-color: #F86338;
+  border: 1px solid #f86338;
+  background-color: #f86338;
   padding: 2px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -580,6 +573,5 @@ button:hover {
 }
 .view-shop:hover {
   background-color: #029ee7;
-  color:#000000;
+  color: #000000;
 }
-
