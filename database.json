@@ -1006,5 +1006,27 @@
       "orderAt": "2024-11-25",
       "reqDate": "2024-11-30"
     }
+  ],
+  "carousels": [
+    {
+      "id": 1,
+      "image": "assets/images/carousel1.png",
+      "alt": "Mô tả cho carousel 1"
+    },
+    {
+      "id": 2,
+      "image": "assets/images/carousel2.png",
+      "alt": "Mô tả cho carousel 2"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/carousel3.png",
+      "alt": "Mô tả cho carousel 3"
+    },
+    {
+      "id": 4,
+      "image": "assets/images/carousel4.png",
+      "alt": "Mô tả cho carousel 4"
+    }
   ]
 }
