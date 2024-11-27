@@ -11,6 +11,8 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import AnswerQuestion from "./hooks/AnswerQuestion";
 import CarouselHomePage from "./components/Carousel"; // Add your Carousel component
 import Navigation from "./components/Navigation";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -30,10 +32,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productsRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:9999/products"),
-          fetch("http://localhost:9999/categories"),
-        ]);
+        const [productsRes, categoriesRes] = await Promise.all([fetch("http://localhost:9999/products"), fetch("http://localhost:9999/categories")]);
         if (!productsRes.ok || !categoriesRes.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -78,11 +77,7 @@ function App() {
                 <Layout>
                   <Navigation />
                   <CarouselHomePage />
-                  <ProductUser
-                    products={products}
-                    isLogin={isLogin}
-                    setIsLogin={setIsLogin}
-                  />
+                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
                 </Layout>
               }
             />
@@ -91,14 +86,21 @@ function App() {
               path="/productuser"
               element={
                 <Layout>
-                  <ProductUser
-                    products={products}
-                    isLogin={isLogin}
-                    setIsLogin={setIsLogin}
-                  />
+                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
                 </Layout>
               }
             />
+            {/*Đăng ký */}
+            <Route
+              path="/auth/register"
+              element={
+                <>
+                  {" "}
+                  <Header /> <Register />
+                </>
+              }
+            />
+            <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
             {/* answerquestion */}
             <Route
               path="/answerquestion"
