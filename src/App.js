@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AnswerQuestion from "./hooks/AnswerQuestion";
-import CarouselHomePage from "./components/Carousel"; // Add your Carousel component
+import CarouselHomePage from "./components/Carousel";
 import Navigation from "./components/Navigation";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -91,6 +91,7 @@ function App() {
               path="/productuser"
               element={
                 <Layout>
+                  <Navigation />
                   <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
                 </Layout>
               }

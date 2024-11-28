@@ -44,14 +44,17 @@ export default function Login({ isLogin, setIsLogin }) {
           </a>
         </Col>
       </Row>
+      <div>
+        <Link style={{ margin: "25px" }} to={"/productuser"} className="btn btn-dark">
+          {" "}
+          &larr; Trang chủ{" "}
+        </Link>
+      </div>
       <Row>
-        <Col xs lg="4" className="bg-secondary" style={{ backgroundColor: "#DCDCE6" }}>
-          <Link style={{ margin: "25px" }} to={"/productuser"} className="btn btn-dark">
-            {" "}
-            &larr; Trang chủ{" "}
-          </Link>
-        </Col>
-        <Col className="bg-secondary" style={{ backgroundColor: "#FFC0CB" }}>
+        {/*Cột rỗng thứ 1 */}
+        <Col xs lg="4"></Col>
+        {/*Cột 2 chứa form đăng nhập */}
+        <Col>
           <div
             style={{
               marginTop: "5rem",
@@ -124,7 +127,8 @@ export default function Login({ isLogin, setIsLogin }) {
             </form>
           </div>
         </Col>
-        <Col className="bg-secondary text-center" xs lg="4"></Col>
+        {/*Cột rỗng thứ 3 */}
+        <Col></Col>
       </Row>
     </div>
   );
