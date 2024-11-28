@@ -1,13 +1,4 @@
-import {
-  Row,
-  Col,
-  Card,
-  Pagination,
-  Button,
-  Nav,
-  Navbar,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Card, Pagination, Button, Nav, Navbar, Form } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -37,25 +28,17 @@ export default function ProductUser({ isLogin }) {
       .then((res) => res.json())
       .then((result) => setCategories(result));
 
-    fetch(
-      categoryID
-        ? `http://localhost:9999/products?catID=${categoryID}`
-        : "http://localhost:9999/products"
-    )
+    fetch(categoryID ? `http://localhost:9999/products?catID=${categoryID}` : "http://localhost:9999/products")
       .then((res) => res.json())
       .then((result) => {
         let searchResult = [];
         if (catID === 0) {
-          searchResult = result.filter((p) =>
-            p.name.toLowerCase().includes(search.toLowerCase())
+          searchResult = result.filter(
+            (p) => p.name.toLowerCase().includes(search.toLowerCase()) || p.descreption.toLowerCase().includes(search.toLowerCase())
           );
         } else {
           // eslint-disable-next-line eqeqeq
-          searchResult = result.filter(
-            (p) =>
-              p.catID == catID &&
-              p.name.toLowerCase().includes(search.toLowerCase())
-          );
+          searchResult = result.filter((p) => p.catID == catID && p.name.toLowerCase().includes(search.toLowerCase()));
         }
         setProducts(searchResult);
       });
@@ -77,8 +60,7 @@ export default function ProductUser({ isLogin }) {
     const ProductExist = storedCart.findIndex((item) => item.id === product.id);
 
     if (ProductExist !== -1) {
-      storedCart[ProductExist].quantity =
-        (storedCart[ProductExist].quantity || 1) + 1;
+      storedCart[ProductExist].quantity = (storedCart[ProductExist].quantity || 1) + 1;
       updatedCart = [...storedCart];
     } else {
       product.quantity = 1;
@@ -132,11 +114,7 @@ export default function ProductUser({ isLogin }) {
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
       // Hiển thị trang đầu, cuối, hoặc các trang gần vs currentPage
-      if (
-        i === 1 ||
-        i === totalPages ||
-        (i >= currentPage - 1 && i <= currentPage + 1)
-      ) {
+      if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
         pages.push(
           <Pagination.Item
             key={i}
@@ -144,7 +122,7 @@ export default function ProductUser({ isLogin }) {
             onClick={() => {
               setCurrentPage(i);
               window.scrollTo({
-                top: 520, //Về đầu trang nhưng cách đỉnh 520px để không hiện 1 phần có carousel
+                top: 0, //Về đầu trang nhưng cách đỉnh 520px để không hiện 1 phần có carousel
                 behavior: "smooth",
               });
             }}
@@ -194,8 +172,7 @@ export default function ProductUser({ isLogin }) {
             onMouseEnter={(e) => (e.target.style.color = "black")}
             onMouseLeave={(e) => (e.target.style.color = "white")}
           >
-            🛒 Giỏ Hàng [{" "}
-            <span style={{ fontFamily: "fantasy" }}>{cartCount}</span> ]
+            🛒 Giỏ Hàng [ <span style={{ fontFamily: "fantasy" }}>{cartCount}</span> ]
           </div>
         </Col>
       </Row>
@@ -213,14 +190,8 @@ export default function ProductUser({ isLogin }) {
           >
             <Form>
               <Form.Group controlId="sortOrder">
-                <Form.Label style={{ fontWeight: "bold" }}>
-                  Sắp xếp theo giá:
-                </Form.Label>
-                <Form.Control
-                  as="select"
-                  value={sortOrder}
-                  onChange={handleSortChange}
-                >
+                <Form.Label style={{ fontWeight: "bold" }}>Sắp xếp theo giá:</Form.Label>
+                <Form.Control as="select" value={sortOrder} onChange={handleSortChange}>
                   <option value="default">Không sắp xếp</option>
                   <option value="asc">Giá tăng dần</option>
                   <option value="desc">Giá giảm dần</option>
@@ -237,13 +208,8 @@ export default function ProductUser({ isLogin }) {
             }}
           >
             <Form>
-              <Form.Label style={{ fontWeight: "bold" }}>
-                Lựa chọn theo loại:
-              </Form.Label>
-              <Form.Select
-                onChange={handleCategoryChange}
-                value={selectedCategory || 0}
-              >
+              <Form.Label style={{ fontWeight: "bold" }}>Lựa chọn theo loại:</Form.Label>
+              <Form.Select onChange={handleCategoryChange} value={selectedCategory || 0}>
                 <option key={0} value={0}>
                   {" "}
                   Tất cả sản phẩm
@@ -261,129 +227,112 @@ export default function ProductUser({ isLogin }) {
         {/* Cột chứa sản phẩm */}
         <Col md={10}>
           <Row>
-            {sortedProducts
-              .slice(
-                (currentPage - 1) * productsPerPage,
-                currentPage * productsPerPage
-              )
-              .map((p, index) => (
-                <Col
-                  key={index}
-                  md={3}
-                  xs={12}
-                  sm={6}
-                  style={{ marginBottom: "22px" }}
+            {sortedProducts.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage).map((p, index) => (
+              <Col key={index} md={3} xs={12} sm={6} style={{ marginBottom: "22px" }}>
+                <Card
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
                 >
-                  <Card
+                  <Card.Link
+                    href={`/product/detail/${p.id}`}
                     style={{
+                      height: "200px",
+                      overflow: "hidden",
                       display: "flex",
-                      flexDirection: "column",
-                      height: "100%",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
-                    <Card.Link
-                      href={`/product/detail/${p.id}`}
+                    <Card.Img
+                      variant="top"
+                      src={p.image}
+                      alt={p.descreption}
                       style={{
-                        height: "200px",
-                        overflow: "hidden",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        objectFit: "contain",
+                        width: "100%",
+                        height: "100%",
                       }}
-                    >
-                      <Card.Img
-                        variant="top"
-                        src={p.image}
-                        alt={p.descreption}
+                    />
+                  </Card.Link>
+                  <Card.Body style={{ flex: "1 1 auto" }}>
+                    <Card.Title className="text-center">
+                      <Link
+                        to={`/product/detail/${p.id}`}
                         style={{
-                          objectFit: "contain",
-                          width: "100%",
-                          height: "100%",
+                          textDecoration: "none",
+                          fontWeight: "bold",
+                          fontSize: "1.5rem",
                         }}
-                      />
-                    </Card.Link>
-                    <Card.Body style={{ flex: "1 1 auto" }}>
-                      <Card.Title className="text-center">
-                        <Link
-                          to={`/product/detail/${p.id}`}
-                          style={{
-                            textDecoration: "none",
-                            fontWeight: "bold",
-                            fontSize: "1.5rem",
-                          }}
-                          onMouseEnter={(e) =>
-                            (e.target.style.color = "orange")
-                          }
-                          onMouseLeave={(e) => (e.target.style.color = "blue")}
-                        >
-                          {p.name}
-                        </Link>
-                      </Card.Title>
-                      <Card.Text style={{ color: "red", fontWeight: "bold" }}>
-                        <span style={{ marginRight: "9px", marginLeft: "2px" }}>
-                          {p.price.toLocaleString("vi-VN", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                        </span>
-                        <span
-                          style={{
-                            textDecoration: "line-through",
-                            color: "gray",
-                            marginRight: "3px",
-                          }}
-                        >
-                          &nbsp;
-                          {((p.price * 100) / 87).toLocaleString("vi-VN", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                        </span>{" "}
-                        <small
-                          style={{
-                            color: "red",
-                            backgroundColor: "pink",
-                            borderRadius: "5px",
-                            padding: "2px 4px",
-                          }}
-                        >
-                          -14%
-                        </small>
-                      </Card.Text>
-                      <Card.Text className="text-dark">
-                        {p.descreption}
-                      </Card.Text>
-                    </Card.Body>
-                    <Button
-                      variant="success"
-                      onClick={() => handleAddToCart(p)}
-                      onMouseEnter={(e) => (e.target.style.color = "black")}
-                      onMouseLeave={(e) => (e.target.style.color = "white")}
-                    >
-                      Thêm vào giỏ hàng
-                    </Button>
-                    <Button
-                      style={{ margin: "5px" }}
-                      variant="warning"
-                      as={Link}
-                      to={`/product/detail/${p.id}`}
-                      onMouseEnter={(e) => (e.target.style.color = "white")}
-                      onMouseLeave={(e) => (e.target.style.color = "black")}
-                    >
-                      Xem chi tiết
-                    </Button>
-                  </Card>
-                </Col>
-              ))}
+                        onMouseEnter={(e) => (e.target.style.color = "orange")}
+                        onMouseLeave={(e) => (e.target.style.color = "blue")}
+                      >
+                        {p.name}
+                      </Link>
+                    </Card.Title>
+                    <Card.Text style={{ color: "red", fontWeight: "bold" }}>
+                      <span style={{ marginRight: "9px", marginLeft: "2px" }}>
+                        {p.price.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          color: "gray",
+                          marginRight: "3px",
+                        }}
+                      >
+                        &nbsp;
+                        {((p.price * 100) / 87).toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>{" "}
+                      <small
+                        style={{
+                          color: "red",
+                          backgroundColor: "pink",
+                          borderRadius: "5px",
+                          padding: "2px 4px",
+                        }}
+                      >
+                        -14%
+                      </small>
+                    </Card.Text>
+                    <Card.Text className="text-dark">{p.descreption}</Card.Text>
+                  </Card.Body>
+                  <Button
+                    variant="success"
+                    onClick={() => handleAddToCart(p)}
+                    onMouseEnter={(e) => (e.target.style.color = "black")}
+                    onMouseLeave={(e) => (e.target.style.color = "white")}
+                  >
+                    Thêm vào giỏ hàng
+                  </Button>
+                  <Button
+                    style={{ margin: "5px" }}
+                    variant="warning"
+                    as={Link}
+                    to={`/product/detail/${p.id}`}
+                    onMouseEnter={(e) => (e.target.style.color = "white")}
+                    onMouseLeave={(e) => (e.target.style.color = "black")}
+                  >
+                    Xem chi tiết
+                  </Button>
+                </Card>
+              </Col>
+            ))}
           </Row>
         </Col>
       </Row>
 
       {/* Phân trang */}
       <Row variant="round" className="mt-3">
-        <Pagination style={{ justifyContent: "center" }}>
-          {renderPagination()}
-        </Pagination>
+        <Pagination style={{ justifyContent: "center" }}>{renderPagination()}</Pagination>
       </Row>
     </div>
   );

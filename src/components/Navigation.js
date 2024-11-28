@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,18 @@ const Navigation = () => {
     navbar: {
       backgroundColor: "rgb(13, 110, 253)", // Dark background
       padding: "10px 20px",
+      transition: "all 0.3s ease-in-out",
+    },
+    stickyNavbar: {
+      backgroundColor: "rgb(13, 110, 253)", // Dark background
+      padding: "10px 20px",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      zIndex: 1000,
+      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)", // Optional shadow for sticky effect
+      transition: "all 0.3s ease-in-out",
     },
     container: {
       maxWidth: "1200px", // Maximum width for the navigation bar
@@ -35,27 +47,37 @@ const Navigation = () => {
     },
   };
 
+  // Thanh navigation sẽ đi theo header khi scroll
+  const [isSticky, setIsSticky] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div>
-      <Navbar style={styles.navbar}>
+      <Navbar style={isSticky ? styles.stickyNavbar : styles.navbar} id="navbar">
         <Container style={styles.container}>
           <Navbar.Brand style={styles.brand}>Trang chủ</Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            style={styles.toggle}
-          />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" style={styles.toggle} />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link
                 as={Link}
                 to="/productuser"
                 style={styles.navLink}
-                onMouseEnter={(e) =>
-                  (e.target.style.color = styles.navLinkHover.color)
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.color = styles.navLink.color)
-                }
+                onMouseEnter={(e) => (e.target.style.color = styles.navLinkHover.color)}
+                onMouseLeave={(e) => (e.target.style.color = styles.navLink.color)}
               >
                 Sản phẩm
               </Nav.Link>
@@ -63,12 +85,8 @@ const Navigation = () => {
                 as={Link}
                 to="/about"
                 style={styles.navLink}
-                onMouseEnter={(e) =>
-                  (e.target.style.color = styles.navLinkHover.color)
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.color = styles.navLink.color)
-                }
+                onMouseEnter={(e) => (e.target.style.color = styles.navLinkHover.color)}
+                onMouseLeave={(e) => (e.target.style.color = styles.navLink.color)}
               >
                 Giới thiệu
               </Nav.Link>
@@ -76,12 +94,8 @@ const Navigation = () => {
                 as={Link}
                 to="/contact"
                 style={styles.navLink}
-                onMouseEnter={(e) =>
-                  (e.target.style.color = styles.navLinkHover.color)
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.color = styles.navLink.color)
-                }
+                onMouseEnter={(e) => (e.target.style.color = styles.navLinkHover.color)}
+                onMouseLeave={(e) => (e.target.style.color = styles.navLink.color)}
               >
                 Liên hệ
               </Nav.Link>

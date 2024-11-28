@@ -700,6 +700,15 @@
       "dob": "2024-05-29",
       "gender": "nữ",
       "role": "user"
+    },
+    {
+      "id": "41",
+      "name": "Nguyễn Đức Huy",
+      "email": "user5@gmail.com",
+      "password": "123456",
+      "dob": "2024-11-27",
+      "gender": "female",
+      "role": "user"
     }
   ],
   "orderDetailsNoLogin": [
@@ -1009,22 +1018,22 @@
   ],
   "carousels": [
     {
-      "id": 1,
+      "id": "1",
       "image": "assets/images/carousel1.png",
       "alt": "Mô tả cho carousel 1"
     },
     {
-      "id": 2,
+      "id": "2",
       "image": "assets/images/carousel2.png",
       "alt": "Mô tả cho carousel 2"
     },
     {
-      "id": 3,
+      "id": "3",
       "image": "assets/images/carousel3.png",
       "alt": "Mô tả cho carousel 3"
     },
     {
-      "id": 4,
+      "id": "4",
       "image": "assets/images/carousel4.png",
       "alt": "Mô tả cho carousel 4"
     }

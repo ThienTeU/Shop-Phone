@@ -9,10 +9,11 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AnswerQuestion from "./hooks/AnswerQuestion";
-import CarouselHomePage from "./components/Carousel"; // Add your Carousel component
+import CarouselHomePage from "./components/Carousel";
 import Navigation from "./components/Navigation";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -70,6 +71,9 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
+            {/* Redirect từ "/" đến "/home" */}
+            <Route path="/" element={<Navigate to="/home" />} />
+
             {/* home */}
             <Route
               path="/home"
@@ -81,26 +85,32 @@ function App() {
                 </Layout>
               }
             />
+
             {/* productlist */}
             <Route
               path="/productuser"
               element={
                 <Layout>
+                  <Navigation />
                   <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
                 </Layout>
               }
             />
-            {/*Đăng ký */}
+
+            {/* Đăng ký */}
             <Route
               path="/auth/register"
               element={
                 <>
-                  {" "}
-                  <Header /> <Register />
+                  <Header />
+                  <Register />
                 </>
               }
             />
+
+            {/* Đăng nhập */}
             <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
+
             {/* answerquestion */}
             <Route
               path="/answerquestion"
