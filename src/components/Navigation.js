@@ -64,6 +64,27 @@ const Navigation = () => {
     };
   }, []);
 
+  /* Click vào chữ giới thiệu */
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      window.scrollTo({
+        top: aboutSection.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+  /* Click vào chữ Liên hệ */
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      window.scrollTo({
+        top: contactSection.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div>
       <Navbar style={isSticky ? styles.stickyNavbar : styles.navbar} id="navbar">
@@ -83,7 +104,8 @@ const Navigation = () => {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/about"
+                onClick={scrollToAbout}
+                to="#about"
                 style={styles.navLink}
                 onMouseEnter={(e) => (e.target.style.color = styles.navLinkHover.color)}
                 onMouseLeave={(e) => (e.target.style.color = styles.navLink.color)}
@@ -92,7 +114,8 @@ const Navigation = () => {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/contact"
+                onClick={scrollToContact}
+                to="#contact"
                 style={styles.navLink}
                 onMouseEnter={(e) => (e.target.style.color = styles.navLinkHover.color)}
                 onMouseLeave={(e) => (e.target.style.color = styles.navLink.color)}

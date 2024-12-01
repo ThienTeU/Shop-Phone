@@ -687,14 +687,14 @@
       "id": "3",
       "name": "Nguyễn Đức Huy",
       "email": "huyndhe176876@fpt.edu.vn",
-      "password": "123456",
+      "password": "123123",
       "dob": "2003-03-31",
       "gender": "nam",
       "role": "user"
     },
     {
       "id": "4",
-      "name": "Dương Quỳnh Anh",
+      "name": "Dương Thị Quỳnh Anh",
       "email": "anhxinhgai@gmail.com",
       "password": "123456",
       "dob": "2024-05-29",
@@ -703,7 +703,7 @@
     },
     {
       "id": "41",
-      "name": "Nguyễn Đức Huy",
+      "name": "Khách hàng Five 5",
       "email": "user5@gmail.com",
       "password": "123456",
       "dob": "2024-11-27",

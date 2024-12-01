@@ -8,12 +8,13 @@ import ProductUser from "./components/ProductUser";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/ThemeProvider";
-import AnswerQuestion from "./hooks/AnswerQuestion";
 import CarouselHomePage from "./components/Carousel";
 import Navigation from "./components/Navigation";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import { Navigate } from "react-router-dom";
+import ChangePassword from "./components/ChangePassword";
+import ViewProfile from "./components/ViewProfile";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -111,13 +112,23 @@ function App() {
             {/* Đăng nhập */}
             <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
 
-            {/* answerquestion */}
+            {/*Đổi mật khẩu */}
             <Route
-              path="/answerquestion"
+              path="/change-password"
               element={
-                <Layout>
-                  <AnswerQuestion />
-                </Layout>
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ChangePassword />
+                </>
+              }
+            />
+            <Route
+              path="/view-profile"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ViewProfile isLogin={isLogin} />
+                </>
               }
             />
           </Routes>
