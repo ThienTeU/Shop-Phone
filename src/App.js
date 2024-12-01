@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AnswerQuestion from "./hooks/AnswerQuestion";
 import CarouselHomePage from "./components/Carousel";
+import ProductAdmin from "./components/ProductAdmin";
 import Navigation from "./components/Navigation";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -33,7 +34,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productsRes, categoriesRes] = await Promise.all([fetch("http://localhost:9999/products"), fetch("http://localhost:9999/categories")]);
+        const [productsRes, categoriesRes] = await Promise.all([
+          fetch("http://localhost:9999/products"),
+          fetch("http://localhost:9999/categories"),
+        ]);
         if (!productsRes.ok || !categoriesRes.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -81,7 +85,11 @@ function App() {
                 <Layout>
                   <Navigation />
                   <CarouselHomePage />
-                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductUser
+                    products={products}
+                    isLogin={isLogin}
+                    setIsLogin={setIsLogin}
+                  />
                 </Layout>
               }
             />
@@ -92,11 +100,25 @@ function App() {
               element={
                 <Layout>
                   <Navigation />
-                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductUser
+                    products={products}
+                    isLogin={isLogin}
+                    setIsLogin={setIsLogin}
+                  />
                 </Layout>
               }
             />
-
+            {/* Product manager of role Admin */}
+            <Route
+              path="/productadmin"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductAdmin />
+                  <Footer />{" "}
+                </>
+              }
+            />
             {/* Đăng ký */}
             <Route
               path="/auth/register"
@@ -109,7 +131,10 @@ function App() {
             />
 
             {/* Đăng nhập */}
-            <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
+            <Route
+              path="/auth/login"
+              element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+            />
 
             {/* answerquestion */}
             <Route
