@@ -53,8 +53,12 @@ export default function ProductAdmin() {
           );
         }
 
+<<<<<<< HEAD
         setTotalProducts(searchResult.length); // Set the total number of filtered products
         // Calculate which products should be shown on the current page
+=======
+        setTotalProducts(searchResult.length);
+>>>>>>> HuyND
         const indexOfLastProduct = currentPage * productsPerPage;
         const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
         setProducts(
@@ -146,6 +150,7 @@ export default function ProductAdmin() {
           style={sidebarStyle}
         >
           <Category data={categories} />
+<<<<<<< HEAD
           <Button
             variant="success"
             as={Link}
@@ -168,6 +173,15 @@ export default function ProductAdmin() {
             to="/User/productUser"
             style={buttonStyle}
           >
+=======
+          <Button variant="success" as={Link} to="/productuser" style={buttonStyle}>
+            Giao Diện Của Khách
+          </Button>
+          <Button variant="warning" as={Link} to="/product/ordermanagement" style={buttonStyle}>
+            Quản lý đơn hàng
+          </Button>
+          <Button variant="warning" as={Link} to="/User/productUser" style={buttonStyle}>
+>>>>>>> HuyND
             Quản lý tài khoản
           </Button>
         </Col>
@@ -176,10 +190,14 @@ export default function ProductAdmin() {
         <Col xs={12} sm={9} md={10} className="products-container">
           <Row>
             <Col xs={3}>
+<<<<<<< HEAD
               <Form.Select
                 onChange={handleCategoryChange}
                 value={selectedCategory || 0}
               >
+=======
+              <Form.Select onChange={handleCategoryChange} value={selectedCategory || 0}>
+>>>>>>> HuyND
                 <option key={0} value={0}>
                   Tất Cả Sản Phẩm
                 </option>
@@ -193,12 +211,7 @@ export default function ProductAdmin() {
             <Col xs={6}>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Control
-                    type="text"
-                    placeholder="Nhập tên sản phẩm muốn tìm kiếm..."
-                    style={{ border: "2px solid Blue" }}
-                    onChange={handleSearchChange}
-                  />
+                  <Form.Control type="text" placeholder="Nhập tên sản phẩm muốn tìm kiếm..." style={{ border: "2px solid Blue" }} onChange={handleSearchChange} />
                 </Form.Group>
               </Form>
             </Col>
@@ -272,9 +285,7 @@ export default function ProductAdmin() {
         <Modal.Header closeButton>
           <Modal.Title>Xác nhận xóa</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Bạn có chắc chắn muốn xóa sản phẩm "{productToDelete?.name}" không?
-        </Modal.Body>
+        <Modal.Body>Bạn có chắc chắn muốn xóa sản phẩm "{productToDelete?.name}" không?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             Hủy

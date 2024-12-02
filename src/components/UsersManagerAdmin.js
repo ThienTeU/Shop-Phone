@@ -1,7 +1,6 @@
-import { Container, Row, Col, Form, Button, Table, Spinner, Modal, Pagination } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Table, Spinner, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { Navigate, Link } from "react-router-dom";
-import { FaTrashAlt, FaEdit } from "react-icons/fa"; // Icons for delete and edit
+import { Link } from "react-router-dom";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -49,11 +48,7 @@ export default function UserManagement() {
         return res.json();
       })
       .then(() => {
-        setUsers(
-          users.map((user) =>
-            user.id === userId ? { ...user, isActive: !currentStatus } : user
-          )
-        );
+        setUsers(users.map((user) => (user.id === userId ? { ...user, isActive: !currentStatus } : user)));
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
@@ -91,17 +86,21 @@ export default function UserManagement() {
     setShowModal(false);
   };
 
-
-
   return (
     <Container>
       <Row className="mt-4">
         {/* Sidebar */}
         <Col xs={12} sm={3} md={2} className="categories-container" style={sidebarStyle}>
           <div>
-            <Link to="/user/management" className="btn btn-outline-primary w-100 mb-2">Quản Lý Tài Khoản</Link>
-            <Link to="/order/management" className="btn btn-outline-primary w-100 mb-2">Quản Lý Đơn Hàng</Link>
-            <Link to="/productadmin" className="btn btn-outline-primary w-100 mb-2">Quản Lý Sản Phẩm</Link>
+            <Link to="/User/productUser" className="btn btn-outline-primary w-100 mb-2">
+              Quản Lý Tài Khoản
+            </Link>
+            <Link to="/ordermanagement" className="btn btn-outline-primary w-100 mb-2">
+              Quản Lý Đơn Hàng
+            </Link>
+            <Link to="/productadmin" className="btn btn-outline-primary w-100 mb-2">
+              Quản Lý Sản Phẩm
+            </Link>
           </div>
         </Col>
 

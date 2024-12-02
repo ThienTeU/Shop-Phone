@@ -16,9 +16,9 @@ import Login from "./components/Login";
 import { Navigate } from "react-router-dom";
 import ChangePassword from "./components/ChangePassword";
 import ViewProfile from "./components/ViewProfile";
-import UserManagement from "./components/UsersManagerAdmin"; // Ensure this is correctly imported
-import NotFound from "./components/404";
-
+import UserManagement from "./components/UsersManagerAdmin";
+import AccessDenied from "./components/AccessDenied";
+import CreateProduct from "./components/CreateProduct";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -153,15 +153,23 @@ function App() {
               }
             />
             <Route
-            path="/User/productUser"
-            element={
-              <Layout>
-                <UserManagement />
-              </Layout>
-            }
-          />
-          <Route path="/not-found" element={<NotFound />} />
-
+              path="/User/productUser"
+              element={
+                <Layout>
+                  <UserManagement />
+                </Layout>
+              }
+            />
+            <Route path="/accessdenied" element={<AccessDenied />} />
+            <Route
+              path="/product/create"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <CreateProduct categories={categories} />
+                </>
+              }
+            />
           </Routes>
           <ToastContainer />
         </BrowserRouter>
