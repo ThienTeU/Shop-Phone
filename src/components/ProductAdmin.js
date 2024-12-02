@@ -1,7 +1,8 @@
 import { Container, Row, Col, Form, Button, Table, Modal, Pagination } from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { FaTrashAlt, FaEdit } from "react-icons/fa";
+import { FaTrashAlt, FaEdit } from "react-icons/fa"; // Icons for delete and edit
+
 export default function ProductAdmin() {
   const { categoryID } = useParams();
   const [products, setProducts] = useState([]);
@@ -127,14 +128,26 @@ export default function ProductAdmin() {
         {/* Product List */}
         <Col xs={12} sm={9} md={10} className="products-container">
           <Row>
-            <Col xs={6} md={7}>
+            <Col xs={3}>
+              <Form.Select onChange={handleCategoryChange} value={selectedCategory || 0}>
+                <option key={0} value={0}>
+                  Tất Cả Sản Phẩm
+                </option>
+                {categories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Col>
+            <Col xs={6}>
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Control type="text" placeholder="Nhập tên sản phẩm muốn tìm kiếm..." style={{ border: "2px solid Blue" }} onChange={handleSearchChange} />
                 </Form.Group>
               </Form>
             </Col>
-            <Col xs={3} md={5} style={{ textAlign: "right" }}>
+            <Col xs={3} style={{ textAlign: "right" }}>
               <Link to="/product/create" className="btn btn-primary">
                 Tạo sản phẩm mới
               </Link>
@@ -160,7 +173,12 @@ export default function ProductAdmin() {
                     <tr key={p.id}>
                       <td>{p.id}</td>
                       <td>{p.name}</td>
-                      <td>{p.price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</td>
+                      <td>
+                        {p.price.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </td>
                       <td>{p.quantity}</td>
                       <td>{categories.find((c) => c.id === p.catID)?.name || "N/A"}</td>
                       <td>
