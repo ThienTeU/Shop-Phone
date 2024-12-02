@@ -95,7 +95,7 @@ export default function UserManagement() {
             <Link to="/User/productUser" className="btn btn-outline-primary w-100 mb-2">
               Quản Lý Tài Khoản
             </Link>
-            <Link to="/ordermanagement" className="btn btn-outline-primary w-100 mb-2">
+            <Link to="/product/ordermanagement" className="btn btn-outline-primary w-100 mb-2">
               Quản Lý Đơn Hàng
             </Link>
             <Link to="/productadmin" className="btn btn-outline-primary w-100 mb-2">
