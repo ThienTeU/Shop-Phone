@@ -911,7 +911,7 @@
       "dob": "2000-11-11",
       "gender": "male",
       "role": "user",
-      "isActive": true
+      "isActive": false
     },
     {
       "id": "6944",
