@@ -50,7 +50,7 @@ function ViewProfile() {
             <div style={{ marginBottom: "20px", display: "flex", alignItems: "center" }}>
               <FontAwesomeIcon icon={faUser} style={{ marginRight: "15px", fontSize: "20px", color: "#3498db" }} />
               <p style={{ fontSize: "20px", fontWeight: "bold", margin: "0", color: "#555" }}>
-                Tên Đăng Nhập: <span style={{ color: "#333" }}>{user.name}</span>
+                Tên Hiển Thị: <span style={{ color: "#333" }}>{user.name}</span>
               </p>
             </div>
             <div style={{ marginBottom: "20px", display: "flex", alignItems: "center" }}>

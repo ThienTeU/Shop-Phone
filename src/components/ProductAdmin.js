@@ -149,12 +149,7 @@ export default function ProductAdmin() {
             <Col xs={6}>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Control
-                    type="text"
-                    placeholder="Nhập tên sản phẩm muốn tìm kiếm..."
-                    style={{ border: "2px solid Blue" }}
-                    onChange={handleSearchChange}
-                  />
+                  <Form.Control type="text" placeholder="Nhập tên sản phẩm muốn tìm kiếm..." style={{ border: "2px solid Blue" }} onChange={handleSearchChange} />
                 </Form.Group>
               </Form>
             </Col>
