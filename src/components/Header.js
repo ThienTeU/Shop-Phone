@@ -83,11 +83,7 @@ function Header({ isLogin, setIsLogin }) {
             </h4>
           </div>
           {/* show ảnh */}
-          <AvatarModal
-            show={showAvatarModal}
-            handleClose={handleCloseAvatarModal}
-            imageSrc="/assets/images/avartashop.png"
-          />
+          <AvatarModal show={showAvatarModal} handleClose={handleCloseAvatarModal} imageSrc="/assets/images/avartashop.png" />
         </Col>
         {/* cột phải */}
         <Col className="ml-auto">
@@ -137,12 +133,7 @@ function Header({ isLogin, setIsLogin }) {
                             <SyncAltIcon /> Chuyển Tài Khoản
                           </Dropdown.Item>
                           <Dropdown.Item onClick={toggleTheme}>
-                            {toggleTheme ? (
-                              <Brightness4Icon />
-                            ) : (
-                              <Brightness7Icon />
-                            )}{" "}
-                            Mode: Sáng|Tối
+                            {toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
@@ -153,10 +144,7 @@ function Header({ isLogin, setIsLogin }) {
                 {accountRole === "user" && (
                   <>
                     <Nav.Item justify-content-center>
-                      <Nav.Link
-                        href="/order-tracking"
-                        style={{ color: "white" }}
-                      >
+                      <Nav.Link href="/order-tracking" style={{ color: "white" }}>
                         <Button
                           style={{
                             marginRight: "10px",
@@ -196,12 +184,7 @@ function Header({ isLogin, setIsLogin }) {
                             <SyncAltIcon /> Chuyển Tài Khoản
                           </Dropdown.Item>
                           <Dropdown.Item onClick={toggleTheme}>
-                            {toggleTheme ? (
-                              <Brightness4Icon />
-                            ) : (
-                              <Brightness7Icon />
-                            )}{" "}
-                            Mode: Sáng|Tối
+                            {toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
