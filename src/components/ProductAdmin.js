@@ -1,6 +1,16 @@
-import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Table,
+  Modal,
+  Pagination,
+} from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FaTrashAlt, FaEdit } from "react-icons/fa"; // Icons for delete and edit
 
 export default function ProductAdmin() {
   const { categoryID } = useParams();
@@ -9,8 +19,14 @@ export default function ProductAdmin() {
   const [search, setSearch] = useState("");
   const [catID, setCatID] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [setSelectedCategoryId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10); // Set the number of products per page
+  const [totalProducts, setTotalProducts] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:9999/categories")
@@ -36,9 +52,16 @@ export default function ProductAdmin() {
               p.name.toLowerCase().includes(search.toLowerCase())
           );
         }
-        setProducts(searchResult);
+
+        setTotalProducts(searchResult.length); // Set the total number of filtered products
+        // Calculate which products should be shown on the current page
+        const indexOfLastProduct = currentPage * productsPerPage;
+        const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+        setProducts(
+          searchResult.slice(indexOfFirstProduct, indexOfLastProduct)
+        );
       });
-  }, [catID, search, categoryID]);
+  }, [catID, search, categoryID, currentPage]);
 
   useEffect(() => {
     const accountsData = localStorage.getItem("accounts");
@@ -59,13 +82,13 @@ export default function ProductAdmin() {
   if (isAdmin === null) {
     return <div>Loading...</div>;
   }
+
   if (!isAdmin) {
     return <Navigate to="/accessdenied" />;
   }
 
   const handleCategoryChange = (e) => {
     const categoryId = parseInt(e.target.value);
-    console.log("Đã chọn Category ID:", categoryId);
     setSelectedCategory(categoryId);
     setCatID(categoryId);
   };
@@ -75,70 +98,81 @@ export default function ProductAdmin() {
   };
 
   const handleDelete = (id, name) => {
-    const confirmDelete = window.confirm(
-      `Bạn có chắc chắn muốn xóa sản phẩm "${name}" không?`
-    );
-    if (confirmDelete) {
-      fetch(`http://localhost:9999/products/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          setProducts(products.filter((item) => item.id !== id)); //xóa sản phẩm
-        });
-      alert(`Xóa sản phẩm "${name}" thành công!`);
-    }
+    setProductToDelete({ id, name });
+    setShowDeleteModal(true);
   };
 
-  const handleCategorySelect = (categoryId) => {
-    setSelectedCategoryId(categoryId);
+  const confirmDelete = () => {
+    fetch(`http://localhost:9999/products/${productToDelete.id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setProducts(products.filter((item) => item.id !== productToDelete.id)); // Remove product from the list
+        setShowDeleteModal(false);
+        alert(`Sản phẩm "${productToDelete.name}" đã được xóa thành công!`);
+      });
   };
+
+  // Handle pagination change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Create pagination items
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+  const paginationItems = [];
+  for (let i = 1; i <= totalPages; i++) {
+    paginationItems.push(
+      <Pagination.Item
+        key={i}
+        active={i === currentPage}
+        onClick={() => handlePageChange(i)}
+      >
+        {i}
+      </Pagination.Item>
+    );
+  }
 
   return (
     <Container>
       <Row className="mt-4">
+        {/* Sidebar */}
         <Col
           xs={12}
           sm={3}
           md={2}
           className="categories-container"
-          style={{
-            backgroundColor: "#f8f9fa",
-            padding: "15px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            marginBottom: "20px",
-          }}
+          style={sidebarStyle}
         >
-          <Category data={categories} onCategorySelect={handleCategorySelect} />
-
+          <Category data={categories} />
           <Button
             variant="success"
             as={Link}
-            to={"/productuser"}
-            style={{
-              display: "block",
-              width: "100%",
-              marginTop: "10px",
-            }}
+            to="/productuser"
+            style={buttonStyle}
           >
             Giao Diện Của Khách
           </Button>
-
           <Button
             variant="warning"
             as={Link}
-            to={"/product/ordermanagement"}
-            style={{
-              display: "block",
-              width: "100%",
-              marginTop: "10px",
-            }}
+            to="/product/ordermanagement"
+            style={buttonStyle}
           >
             Quản lý đơn hàng
           </Button>
+          <Button
+            variant="warning"
+            as={Link}
+            to="/User/productUser"
+            style={buttonStyle}
+          >
+            Quản lý tài khoản
+          </Button>
         </Col>
 
+        {/* Product List */}
         <Col xs={12} sm={9} md={10} className="products-container">
           <Row>
             <Col xs={3}>
@@ -149,7 +183,7 @@ export default function ProductAdmin() {
                 <option key={0} value={0}>
                   Tất Cả Sản Phẩm
                 </option>
-                {categories?.map((c) => (
+                {categories.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
                   </option>
@@ -169,14 +203,16 @@ export default function ProductAdmin() {
               </Form>
             </Col>
             <Col xs={3} style={{ textAlign: "right" }}>
-              <Link to={"/product/create"} className="btn btn-primary">
+              <Link to="/product/create" className="btn btn-primary">
                 Tạo sản phẩm mới
               </Link>
             </Col>
           </Row>
+
+          {/* Product Table */}
           <Row>
             <Col>
-              <Table hover striped bordered>
+              <Table hover striped bordered responsive>
                 <thead>
                   <tr>
                     <th>Id</th>
@@ -200,23 +236,23 @@ export default function ProductAdmin() {
                       </td>
                       <td>{p.quantity}</td>
                       <td>
-                        {/* eslint-disable-next-line eqeqeq*/}
-                        {categories.find((c) => c.id == p.catID)?.name || "N/A"}
+                        {categories.find((c) => c.id === p.catID)?.name ||
+                          "N/A"}
                       </td>
                       <td>
                         <Button variant="primary" className="me-2">
                           <Link
-                            style={{ color: "white", textDecoration: "none" }}
                             to={`/product/${p.id}/edit`}
+                            style={{ color: "white", textDecoration: "none" }}
                           >
-                            Sửa
+                            <FaEdit /> Sửa
                           </Link>
                         </Button>
                         <Button
                           variant="danger"
                           onClick={() => handleDelete(p.id, p.name)}
                         >
-                          Xóa
+                          <FaTrashAlt /> Xóa
                         </Button>
                       </td>
                     </tr>
@@ -225,18 +261,58 @@ export default function ProductAdmin() {
               </Table>
             </Col>
           </Row>
+
+          {/* Pagination */}
+          <Pagination>{paginationItems}</Pagination>
         </Col>
       </Row>
+
+      {/* Modal for Delete Confirmation */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Xác nhận xóa</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Bạn có chắc chắn muốn xóa sản phẩm "{productToDelete?.name}" không?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Hủy
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Xóa
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
+
+const sidebarStyle = {
+  backgroundColor: "#f8f9fa",
+  padding: "15px",
+  borderRadius: "8px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  marginBottom: "20px",
+};
+
+const buttonStyle = {
+  display: "block",
+  width: "100%",
+  marginTop: "10px",
+};
 
 function Category({ data = [] }) {
   return (
     <div>
       {data.map((c) => (
-        <div key={c.id}>
-          <Link to={`/product/category/${c.id}`}>{c.name}</Link>
+        <div key={c.id} className="mb-2">
+          <Link
+            to={`/product/category/${c.id}`}
+            className="btn btn-outline-primary w-100"
+          >
+            {c.name}
+          </Link>
         </div>
       ))}
     </div>
