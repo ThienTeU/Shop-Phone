@@ -664,7 +664,7 @@
       "name": "Thiết bị gia dụng"
     }
   ],
-  "accounts": [
+  "usersWithStatus": [
     {
       "id": "1",
       "name": "Administrator",
@@ -672,7 +672,8 @@
       "password": "123456",
       "dob": "2024-04-18",
       "gender": "nam",
-      "role": "admin"
+      "role": "admin",
+      "isActive": true
     },
     {
       "id": "2",
@@ -681,7 +682,8 @@
       "password": "123456",
       "dob": "2024-04-26",
       "gender": "nữ",
-      "role": "user"
+      "role": "user",
+      "isActive": true
     },
     {
       "id": "3",
@@ -690,7 +692,8 @@
       "password": "123123",
       "dob": "2003-03-31",
       "gender": "nam",
-      "role": "user"
+      "role": "user",
+      "isActive": true
     },
     {
       "id": "4",
@@ -699,7 +702,8 @@
       "password": "123456",
       "dob": "2024-05-29",
       "gender": "nữ",
-      "role": "user"
+      "role": "user",
+      "isActive": true
     },
     {
       "id": "41",
@@ -708,7 +712,8 @@
       "password": "123456",
       "dob": "2024-11-27",
       "gender": "female",
-      "role": "user"
+      "role": "user",
+      "isActive": true
     }
   ],
   "orderDetailsNoLogin": [
@@ -845,6 +850,78 @@
       ],
       "vat": "8%",
       "total": "181.785.600 ₫"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "name": "Administrator",
+      "email": "admin1@gmail.com",
+      "password": "123456",
+      "dob": "2024-04-18",
+      "gender": "nam",
+      "role": "admin",
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "name": "User4",
+      "email": "user4@gmail.com",
+      "password": "123456",
+      "dob": "2024-04-26",
+      "gender": "nữ",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "3",
+      "name": "Nguyễn Đức Huy",
+      "email": "huyndhe176876@fpt.edu.vn",
+      "password": "123123",
+      "dob": "2003-03-31",
+      "gender": "nam",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "4",
+      "name": "Dương Thị Quỳnh Anh",
+      "email": "anhxinhgai@gmail.com",
+      "password": "123456",
+      "dob": "2024-05-29",
+      "gender": "nữ",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "41",
+      "name": "Khách hàng Five 5",
+      "email": "user5@gmail.com",
+      "password": "123456",
+      "dob": "2024-11-27",
+      "gender": "female",
+      "role": "user",
+      "isActive": false
+    },
+    {
+      "id": "411",
+      "name": "anh",
+      "email": "anhcoi18052002@gmail.com",
+      "password": "123456",
+      "dob": "2000-11-11",
+      "gender": "male",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "6944",
+      "name": "ad",
+      "email": "nguyenkien200407@gmail.com",
+      "password": "123456",
+      "dob": "2000-12-12",
+      "gender": "nam",
+      "role": "user",
+      "isActive": true
     }
   ],
   "orderDetailsLogged": [
