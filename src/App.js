@@ -35,10 +35,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productsRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:9999/products"),
-          fetch("http://localhost:9999/categories"),
-        ]);
+        const [productsRes, categoriesRes] = await Promise.all([fetch("http://localhost:9999/products"), fetch("http://localhost:9999/categories")]);
         if (!productsRes.ok || !categoriesRes.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -86,11 +83,7 @@ function App() {
                 <Layout>
                   <Navigation />
                   <CarouselHomePage />
-                  <ProductUser
-                    products={products}
-                    isLogin={isLogin}
-                    setIsLogin={setIsLogin}
-                  />
+                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
                 </Layout>
               }
             />
@@ -101,11 +94,7 @@ function App() {
               element={
                 <Layout>
                   <Navigation />
-                  <ProductUser
-                    products={products}
-                    isLogin={isLogin}
-                    setIsLogin={setIsLogin}
-                  />
+                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
                 </Layout>
               }
             />
@@ -120,6 +109,15 @@ function App() {
                 </>
               }
             />
+            {/* Hàm filter categories trong Admin */}
+            <Route
+              path="/product/category/:categoryID"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} /> <ProductAdmin /> <Footer />
+                </>
+              }
+            />
             {/* Đăng ký */}
             <Route
               path="/auth/register"
@@ -130,13 +128,8 @@ function App() {
                 </>
               }
             />
-
             {/* Đăng nhập */}
-            <Route
-              path="/auth/login"
-              element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
-            />
-
+            <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
             {/*Đổi mật khẩu */}
             <Route
               path="/change-password"

@@ -24,12 +24,7 @@ export default function ProductAdmin() {
         if (catID === 0) {
           searchResult = result.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
         } else {
-          searchResult = result.filter(
-            {
-              /* eslint-disable-next-line eqeqeq*/
-            },
-            (p) => p.catID == catID && p.name.toLowerCase().includes(search.toLowerCase())
-          );
+          searchResult = result.filter((p) => p.catID == catID && p.name.toLowerCase().includes(search.toLowerCase()));
         }
         setProducts(searchResult);
       });
@@ -60,7 +55,7 @@ export default function ProductAdmin() {
 
   const handleCategoryChange = (e) => {
     const categoryId = parseInt(e.target.value);
-    console.log("Selected Category ID:", categoryId);
+    console.log("Đã chọn Category ID:", categoryId);
     setSelectedCategory(categoryId);
     setCatID(categoryId);
   };
