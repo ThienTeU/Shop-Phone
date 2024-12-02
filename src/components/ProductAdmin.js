@@ -1,8 +1,7 @@
 import { Container, Row, Col, Form, Button, Table, Modal, Pagination } from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { FaTrashAlt, FaEdit } from "react-icons/fa"; // Icons for delete and edit
-
+import { FaTrashAlt, FaEdit } from "react-icons/fa";
 export default function ProductAdmin() {
   const { categoryID } = useParams();
   const [products, setProducts] = useState([]);
@@ -33,7 +32,7 @@ export default function ProductAdmin() {
         } else {
           searchResult = result.filter((p) => p.catID === catID && p.name.toLowerCase().includes(search.toLowerCase()));
         }
-        
+
         setTotalProducts(searchResult.length); // Set the total number of filtered products
         // Calculate which products should be shown on the current page
         const indexOfLastProduct = currentPage * productsPerPage;
@@ -115,9 +114,15 @@ export default function ProductAdmin() {
         {/* Sidebar */}
         <Col xs={12} sm={3} md={2} className="categories-container" style={sidebarStyle}>
           <Category data={categories} />
-          <Button variant="success" as={Link} to="/productuser" style={buttonStyle}>Giao Diện Của Khách</Button>
-          <Button variant="warning" as={Link} to="/product/ordermanagement" style={buttonStyle}>Quản lý đơn hàng</Button>
-          <Button variant="warning" as={Link} to="/User/productUser" style={buttonStyle}>Quản lý tài khoản</Button>
+          <Button variant="success" as={Link} to="/productuser" style={buttonStyle}>
+            Giao Diện Của Khách
+          </Button>
+          <Button variant="warning" as={Link} to="/product/ordermanagement" style={buttonStyle}>
+            Quản lý đơn hàng
+          </Button>
+          <Button variant="warning" as={Link} to="/User/productUser" style={buttonStyle}>
+            Quản lý tài khoản
+          </Button>
         </Col>
 
         {/* Product List */}
@@ -125,26 +130,27 @@ export default function ProductAdmin() {
           <Row>
             <Col xs={3}>
               <Form.Select onChange={handleCategoryChange} value={selectedCategory || 0}>
-                <option key={0} value={0}>Tất Cả Sản Phẩm</option>
+                <option key={0} value={0}>
+                  Tất Cả Sản Phẩm
+                </option>
                 {categories.map((c) => (
-                  <option key={c.id} value={c.id}>{c.name}</option>
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
                 ))}
               </Form.Select>
             </Col>
             <Col xs={6}>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Control
-                    type="text"
-                    placeholder="Nhập tên sản phẩm muốn tìm kiếm..."
-                    style={{ border: "2px solid Blue" }}
-                    onChange={handleSearchChange}
-                  />
+                  <Form.Control type="text" placeholder="Nhập tên sản phẩm muốn tìm kiếm..." style={{ border: "2px solid Blue" }} onChange={handleSearchChange} />
                 </Form.Group>
               </Form>
             </Col>
             <Col xs={3} style={{ textAlign: "right" }}>
-              <Link to="/product/create" className="btn btn-primary">Tạo sản phẩm mới</Link>
+              <Link to="/product/create" className="btn btn-primary">
+                Tạo sản phẩm mới
+              </Link>
             </Col>
           </Row>
 
@@ -197,9 +203,7 @@ export default function ProductAdmin() {
         <Modal.Header closeButton>
           <Modal.Title>Xác nhận xóa</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Bạn có chắc chắn muốn xóa sản phẩm "{productToDelete?.name}" không?
-        </Modal.Body>
+        <Modal.Body>Bạn có chắc chắn muốn xóa sản phẩm "{productToDelete?.name}" không?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
             Hủy
