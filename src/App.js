@@ -16,6 +16,7 @@ import Login from "./components/Login";
 import { Navigate } from "react-router-dom";
 import ChangePassword from "./components/ChangePassword";
 import ViewProfile from "./components/ViewProfile";
+import CreateProduct from "./components/CreateProduct";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -106,6 +107,15 @@ function App() {
                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
                   <ProductAdmin />
                   <Footer />{" "}
+                </>
+              }
+            />
+            <Route
+              path="/product/create"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <CreateProduct categories={categories} />
                 </>
               }
             />
