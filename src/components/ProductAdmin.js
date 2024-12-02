@@ -17,14 +17,24 @@ export default function ProductAdmin() {
       .then((res) => res.json())
       .then((result) => setCategories(result));
 
-    fetch(categoryID ? `http://localhost:9999/products?catID=${categoryID}` : "http://localhost:9999/products")
+    fetch(
+      categoryID
+        ? `http://localhost:9999/products?catID=${categoryID}`
+        : "http://localhost:9999/products"
+    )
       .then((res) => res.json())
       .then((result) => {
         let searchResult = [];
         if (catID === 0) {
-          searchResult = result.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+          searchResult = result.filter((p) =>
+            p.name.toLowerCase().includes(search.toLowerCase())
+          );
         } else {
-          searchResult = result.filter((p) => p.catID == catID && p.name.toLowerCase().includes(search.toLowerCase()));
+          searchResult = result.filter(
+            (p) =>
+              p.catID === catID &&
+              p.name.toLowerCase().includes(search.toLowerCase())
+          );
         }
         setProducts(searchResult);
       });
@@ -65,7 +75,9 @@ export default function ProductAdmin() {
   };
 
   const handleDelete = (id, name) => {
-    const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa sản phẩm "${name}" không?`);
+    const confirmDelete = window.confirm(
+      `Bạn có chắc chắn muốn xóa sản phẩm "${name}" không?`
+    );
     if (confirmDelete) {
       fetch(`http://localhost:9999/products/${id}`, {
         method: "DELETE",
@@ -130,7 +142,10 @@ export default function ProductAdmin() {
         <Col xs={12} sm={9} md={10} className="products-container">
           <Row>
             <Col xs={3}>
-              <Form.Select onChange={handleCategoryChange} value={selectedCategory || 0}>
+              <Form.Select
+                onChange={handleCategoryChange}
+                value={selectedCategory || 0}
+              >
                 <option key={0} value={0}>
                   Tất Cả Sản Phẩm
                 </option>
@@ -144,7 +159,12 @@ export default function ProductAdmin() {
             <Col xs={6}>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Control type="text" placeholder="Nhập tên sản phẩm muốn tìm kiếm..." style={{ border: "2px solid Blue" }} onChange={handleSearchChange} />
+                  <Form.Control
+                    type="text"
+                    placeholder="Nhập tên sản phẩm muốn tìm kiếm..."
+                    style={{ border: "2px solid Blue" }}
+                    onChange={handleSearchChange}
+                  />
                 </Form.Group>
               </Form>
             </Col>
@@ -185,11 +205,17 @@ export default function ProductAdmin() {
                       </td>
                       <td>
                         <Button variant="primary" className="me-2">
-                          <Link style={{ color: "white", textDecoration: "none" }} to={`/product/${p.id}/edit`}>
+                          <Link
+                            style={{ color: "white", textDecoration: "none" }}
+                            to={`/product/${p.id}/edit`}
+                          >
                             Sửa
                           </Link>
                         </Button>
-                        <Button variant="danger" onClick={() => handleDelete(p.id, p.name)}>
+                        <Button
+                          variant="danger"
+                          onClick={() => handleDelete(p.id, p.name)}
+                        >
                           Xóa
                         </Button>
                       </td>
