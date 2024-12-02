@@ -17,6 +17,9 @@ import { Navigate } from "react-router-dom";
 import ChangePassword from "./components/ChangePassword";
 import ViewProfile from "./components/ViewProfile";
 import CreateProduct from "./components/CreateProduct";
+import UserManagement from "./components/UsersManagerAdmin"; // Ensure this is correctly imported
+import NotFound from "./components/404";
+
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -159,6 +162,16 @@ function App() {
                 </>
               }
             />
+            <Route
+            path="/User/productUser"
+            element={
+              <Layout>
+                <UserManagement />
+              </Layout>
+            }
+          />
+          <Route path="/not-found" element={<NotFound />} />
+
           </Routes>
           <ToastContainer />
         </BrowserRouter>
