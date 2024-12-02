@@ -57,6 +57,7 @@ function Header({ isLogin, setIsLogin }) {
         hideProgressBar: true,
         position: "top-center",
       });
+      localStorage.removeItem("accounts");
       navigate("/auth/login");
     }
   };
@@ -66,13 +67,7 @@ function Header({ isLogin, setIsLogin }) {
       <Row className="bg-dark pt-3 pb-3">
         <Col>
           <h2 class="m-0 display-5 font-weight-semi-bold">
-            <Image
-              src="/assets/images/avartashop.png"
-              alt="H Logo"
-              class="img-fluid"
-              style={{ width: "75px", height: "75px" }}
-              onClick={handleOpenAvatarModal}
-            />
+            <Image src="/assets/images/avartashop.png" alt="H Logo" class="img-fluid" style={{ width: "75px", height: "75px" }} onClick={handleOpenAvatarModal} />
             <a href="/productuser" class="text-decoration-none">
               -Tech Store
             </a>
@@ -127,9 +122,7 @@ function Header({ isLogin, setIsLogin }) {
                           <Dropdown.Item onClick={handleChangeAccount}>
                             <SyncAltIcon /> Chuyển Tài Khoản
                           </Dropdown.Item>
-                          <Dropdown.Item onClick={toggleTheme}>
-                            {toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối
-                          </Dropdown.Item>
+                          <Dropdown.Item onClick={toggleTheme}>{toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </Nav.Item>
@@ -178,9 +171,7 @@ function Header({ isLogin, setIsLogin }) {
                           <Dropdown.Item onClick={handleChangeAccount}>
                             <SyncAltIcon /> Chuyển Tài Khoản
                           </Dropdown.Item>
-                          <Dropdown.Item onClick={toggleTheme}>
-                            {toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối
-                          </Dropdown.Item>
+                          <Dropdown.Item onClick={toggleTheme}>{toggleTheme ? <Brightness4Icon /> : <Brightness7Icon />} Mode: Sáng|Tối</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </Nav.Item>
