@@ -19,10 +19,15 @@ export default function Login({ isLogin, setIsLogin }) {
       const findAccounts = accounts.find((account) => account.email === email && account.password === password);
 
       if (findAccounts) {
-        const { password, ...accountData } = findAccounts;
-        localStorage.setItem("accounts", JSON.stringify([accountData]));
-        setIsLogin(true);
-        navigate(findAccounts.role === "admin" ? "/productadmin" : "/productuser");
+        if (findAccounts.isActive === false) {
+          // If the account is not active, redirect to a "Not Found" page or show an error
+          navigate("/not-found"); // Redirect to a "Not Found" page
+        } else {
+          const { password, ...accountData } = findAccounts;
+          localStorage.setItem("accounts", JSON.stringify([accountData]));
+          setIsLogin(true);
+          navigate(findAccounts.role === "admin" ? "/productadmin" : "/productuser");
+        }
       } else {
         alert("Sai Email hoặc Mật Khẩu. Vui lòng nhập lại");
         setIsLogin(false);
