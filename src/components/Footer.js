@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import { text } from "@fortawesome/fontawesome-svg-core";
 // npm install --save @fortawesome/fontawesome-free
 
 // effect button back-to-top Start
@@ -79,10 +80,7 @@ function Footer() {
           <div className="col-md-3">
             <section id="about" style={{ marginTop: "20px" }}>
               <h3>Giới Thiệu</h3>
-              <p>
-                Chào mừng bạn đến với Website của chúng tôi - nơi mà công nghệ đỉnh cao và chất lượng hoàn hảo gặp gỡ. Tại [H-Tech Store], chúng tôi
-                không chỉ bán đơn thuần các sản phẩm điện tử, mà còn mang đến một trải nghiệm mua sắm đích thực, đầy sự tận tâm và chuyên nghiệp !
-              </p>
+              <p>Chào mừng bạn đến với Website của chúng tôi - nơi mà công nghệ đỉnh cao và chất lượng hoàn hảo gặp gỡ.</p>
             </section>
           </div>
           <div className="col-md-3">
@@ -99,56 +97,93 @@ function Footer() {
               <ul className="social-icons">
                 <Row>
                   <li>
-                    {" "}
                     <a href="https://react-bootstrap.netlify.app/">
-                      {" "}
-                      <i className="fab fa-facebook"> </i> Facebook
-                    </a>{" "}
-                  </li>{" "}
-                </Row>
-                <Row>
-                  <li>
-                    {" "}
-                    <a href="https://react-bootstrap.netlify.app/">
-                      {" "}
-                      <i className="fab fa-twitter"> </i> Twitter
-                    </a>{" "}
-                  </li>{" "}
-                </Row>
-                <Row>
-                  <li>
-                    {" "}
-                    <a href="https://react-bootstrap.netlify.app/">
-                      {" "}
-                      <i className="fab fa-instagram"> </i> Instagram
-                    </a>{" "}
-                  </li>{" "}
-                </Row>
-                <Row>
-                  <li>
-                    {" "}
-                    <a href="https://react-bootstrap.netlify.app/">
-                      {" "}
-                      <i className="fab fa-linkedin"> </i> Linkedin
-                    </a>{" "}
-                  </li>{" "}
-                </Row>
-                <Row>
-                  <li>
-                    {" "}
-                    <a href="https://react-bootstrap.netlify.app/">
-                      {" "}
-                      <i className="fab fa-youtube"> </i> YouTube
-                    </a>{" "}
-                  </li>{" "}
-                </Row>
-                <Row>
-                  <li>
-                    <a href="https://react-bootstrap.netlify.app/">
-                      {" "}
-                      <i className="fab fa-telegram"></i> Telegram
+                      <i
+                        className="fab fa-facebook"
+                        style={{
+                          display: " flex",
+                          gap: "1em",
+                        }}
+                      >
+                        Facebook
+                      </i>
                     </a>
-                  </li>{" "}
+                  </li>
+                </Row>
+                <Row>
+                  <li>
+                    <a href="https://react-bootstrap.netlify.app/">
+                      <i
+                        className="fab fa-twitter"
+                        style={{
+                          display: " flex",
+                          gap: "1em",
+                        }}
+                      >
+                        Twitter
+                      </i>
+                    </a>
+                  </li>
+                </Row>
+                <Row>
+                  <li>
+                    <a href="https://react-bootstrap.netlify.app/">
+                      <i
+                        className="fab fa-instagram"
+                        style={{
+                          display: " flex",
+                          gap: "1em",
+                        }}
+                      >
+                        Instagram
+                      </i>
+                    </a>
+                  </li>
+                </Row>
+                <Row>
+                  <li>
+                    <a href="https://react-bootstrap.netlify.app/">
+                      <i
+                        className="fab fa-linkedin"
+                        style={{
+                          display: " flex",
+                          gap: "1em",
+                        }}
+                      >
+                        Linkedin
+                      </i>
+                    </a>
+                  </li>
+                </Row>
+                <Row>
+                  <li>
+                    <a href="https://react-bootstrap.netlify.app/">
+                      <i
+                        className="fab fa-youtube"
+                        style={{
+                          display: " flex",
+                          gap: "1em",
+                        }}
+                      >
+                        YouTube
+                      </i>
+                    </a>
+                  </li>
+                </Row>
+                <Row>
+                  <li>
+                    <a href="https://react-bootstrap.netlify.app/">
+                      <i
+                        className="fab fa-telegram"
+                        style={{
+                          display: " flex",
+                          gap: "1em",
+                        }}
+                      >
+                        Telegram
+                      </i>{" "}
+                    </a>
+                  </li>
                 </Row>
               </ul>
             </Row>
@@ -163,35 +198,26 @@ function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="border-0 py-4"
+                  className="border-0 "
                 />
               </Form.Group>
-              <Button type="submit" className="btn-pink btn-block border-0 py-3 mt-3">
+              <Button type="submit" className="btn-secondary btn-block border-0 py-3 px-3">
                 Đăng Ký Ngay
               </Button>
-              <p style={{ color: "red" }}>(*) Nhận ngay voucher 10%</p>
             </Form>
           </div>
         </div>
       </div>
+
       <div className="copy-right">
-        <div className="container">
-          <div className="row">
-            <dIv className="col-md-12 text-start">
-              <p>
-                &copy; CopyRight 2024. All rights reserved. Design by{" "}
-                <a href="#" style={{ color: "red", textDecoration: "none" }}>
-                  Group 4
-                </a>
-                <a href="https://www.dmca.com/Protection.aspx" title="DMCA.com Protection Status" target="_blank" rel="noopener noreferrer">
-                  <img
-                    src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=xxxx-xxxx-xxxx-xxxx"
-                    alt="DMCA.com Protection Status"
-                    style={{ display: "inline-block", marginTop: "10px", marginLeft: "10px" }}
-                  />
-                </a>
-              </p>
-            </dIv>
+        <div className="row">
+          <div className="col-md-12 text-center">
+            <p>
+              &copy; CopyRight 2024. All rights reserved. Design by{" "}
+              <a href="/home" style={{ color: "white" }}>
+                Group 4
+              </a>
+            </p>
           </div>
         </div>
       </div>

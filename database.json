@@ -687,18 +687,27 @@
       "id": "3",
       "name": "Nguyễn Đức Huy",
       "email": "huyndhe176876@fpt.edu.vn",
-      "password": "123456",
+      "password": "123123",
       "dob": "2003-03-31",
       "gender": "nam",
       "role": "user"
     },
     {
       "id": "4",
-      "name": "Dương Quỳnh Anh",
+      "name": "Dương Thị Quỳnh Anh",
       "email": "anhxinhgai@gmail.com",
       "password": "123456",
       "dob": "2024-05-29",
       "gender": "nữ",
+      "role": "user"
+    },
+    {
+      "id": "41",
+      "name": "Khách hàng Five 5",
+      "email": "user5@gmail.com",
+      "password": "123456",
+      "dob": "2024-11-27",
+      "gender": "female",
       "role": "user"
     }
   ],
@@ -1005,6 +1014,28 @@
       "status": "Rejected",
       "orderAt": "2024-11-25",
       "reqDate": "2024-11-30"
+    }
+  ],
+  "carousels": [
+    {
+      "id": "1",
+      "image": "assets/images/carousel1.png",
+      "alt": "Mô tả cho carousel 1"
+    },
+    {
+      "id": "2",
+      "image": "assets/images/carousel2.png",
+      "alt": "Mô tả cho carousel 2"
+    },
+    {
+      "id": "3",
+      "image": "assets/images/carousel3.png",
+      "alt": "Mô tả cho carousel 3"
+    },
+    {
+      "id": "4",
+      "image": "assets/images/carousel4.png",
+      "alt": "Mô tả cho carousel 4"
     }
   ]
 }

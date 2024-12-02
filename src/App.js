@@ -1,228 +1,160 @@
-// import React, { useState, useEffect } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./components/css/Style.css";
-// import { ToastContainer } from "react-toastify"; // Import ToastContainer
-// import "react-toastify/dist/ReactToastify.css"; // Import CSS của react-toastify
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import CreateProduct from "./components/CreateProduct";
-// import ProductDetail from "./components/ProductDetail";
-// import EditProduct from "./components/EditProduct";
-// import { ProductAdmin } from "./components/ProductAdmin";
-// import ProductUser from "./components/ProductUser";
-// import Register from "./components/Register";
-// import Login from "./components/Login";
-// import Footer from "./components/Footer";
-// import Header from "./components/Header";
-// import AccessDenied from "./components/AccessDenied";
-// import Cart from "./components/Cart";
-// import VerifyOrder from "./components/VerifyOrder";
-// import OrderTracking from "./components/OrderTracking";
-// import ViewProfile from "./components/ViewProfile";
-// import ChangePassword from "./components/ChangePassword";
-// import { Term } from "./hooks/Term";
-// import { ThemeProvider } from "./components/ThemeProvider";
-// import StoreRules from "./hooks/StoreRules";
-// import AnswerQuestion from "./hooks/AnswerQuestion";
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./components/css/Style.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductUser from "./components/ProductUser";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { ThemeProvider } from "./components/ThemeProvider";
+import CarouselHomePage from "./components/Carousel";
+import ProductAdmin from "./components/ProductAdmin";
+import Navigation from "./components/Navigation";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import { Navigate } from "react-router-dom";
+import ChangePassword from "./components/ChangePassword";
+import ViewProfile from "./components/ViewProfile";
 
-// function App() {
-//   const [categories, setCategories] = useState([]);
-//   const [products, setProducts] = useState([]);
-//   const [isLogin, setIsLogin] = useState(false);
+function App() {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
+  const [loading, setLoading] = useState(true); // Loading state for products & categories
+  const [error, setError] = useState(null); // Error state for fetch operations
 
-//   useEffect(() => {
-//     let accounts = JSON.parse(localStorage.getItem("accounts"));
-//     if (accounts) {
-//       setIsLogin(true);
-//     }
-//   }, []);
+  useEffect(() => {
+    let accounts = JSON.parse(localStorage.getItem("accounts"));
+    if (accounts) {
+      setIsLogin(true);
+    }
+  }, []);
 
-//   useEffect(() => {
-//     fetch("http://localhost:9999/products")
-//       .then((res) => res.json())
-//       .then((result) => setProducts(result));
-//   }, []);
+  // Combined fetch for categories and products
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [productsRes, categoriesRes] = await Promise.all([fetch("http://localhost:9999/products"), fetch("http://localhost:9999/categories")]);
+        if (!productsRes.ok || !categoriesRes.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const productsData = await productsRes.json();
+        const categoriesData = await categoriesRes.json();
+        setProducts(productsData);
+        setCategories(categoriesData);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
-//   useEffect(() => {
-//     fetch("http://localhost:9999/categories")
-//       .then((res) => res.json())
-//       .then((result) => setCategories(result));
-//   }, []);
+  const Layout = ({ children }) => (
+    <>
+      <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+      {children}
+      <Footer />
+    </>
+  );
 
-//   return (
-//     <ThemeProvider>
-//       <div>
-//         <BrowserRouter>
-//           <Routes>
-//             <Route
-//               path="/auth/register"
-//               element={
-//                 <>
-//                   {" "}
-//                   <Header /> <Register />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/auth/login"
-//               element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
-//             />
-//             <Route
-//               path="/view-profile"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <ViewProfile isLogin={isLogin} />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/change-password"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <ChangePassword />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+  if (error) {
+    return (
+      <div className="text-center text-danger my-4">
+        <p>{error}</p>
+      </div>
+    );
+  }
 
-//                   <ProductUser
-//                     products={products}
-//                     isLogin={isLogin}
-//                     setIsLogin={setIsLogin}
-//                   />
+  return (
+    <ThemeProvider>
+      <div>
+        <BrowserRouter>
+          <Routes>
+            {/* Redirect từ "/" đến "/home" */}
+            <Route path="/" element={<Navigate to="/home" />} />
 
-//                   <Footer />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/productadmin"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <ProductAdmin />
-//                   <Footer />{" "}
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/product/category/:categoryID"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />{" "}
-//                   <ProductAdmin /> <Footer />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/product/create"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <CreateProduct categories={categories} />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/product/:id/detail"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <ProductDetail isLogin={isLogin} setIsLogin={setIsLogin} />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/product/:id/edit"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <EditProduct categories={categories} />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/productuser"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <ProductUser
-//                     products={products}
-//                     isLogin={isLogin}
-//                     setIsLogin={setIsLogin}
-//                   />
+            {/* home */}
+            <Route
+              path="/home"
+              element={
+                <Layout>
+                  <Navigation />
+                  <CarouselHomePage />
+                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
+                </Layout>
+              }
+            />
 
-//                   <Footer />
-//                 </>
-//               }
-//             />
-//             <Route path="/accessdenied" element={<AccessDenied />} />
-//             <Route
-//               path="/cart"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />{" "}
-//                   <Cart isLogin={isLogin} setIsLogin={setIsLogin} />{" "}
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/verifyorder"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <VerifyOrder />{" "}
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/order-tracking"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <OrderTracking />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/terms"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <Term />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/rules"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <StoreRules />
-//                 </>
-//               }
-//             />
-//             <Route
-//               path="/answerquestion"
-//               element={
-//                 <>
-//                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
-//                   <AnswerQuestion />
-//                   <Footer />
-//                 </>
-//               }
-//             />
-//           </Routes>
-//           <ToastContainer />
-//         </BrowserRouter>
-//       </div>
-//     </ThemeProvider>
-//   );
-// }
+            {/* productlist */}
+            <Route
+              path="/productuser"
+              element={
+                <Layout>
+                  <Navigation />
+                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
+                </Layout>
+              }
+            />
+            {/* Product manager of role Admin */}
+            <Route
+              path="/productadmin"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductAdmin />
+                  <Footer />{" "}
+                </>
+              }
+            />
+            {/* Hàm filter categories trong Admin */}
+            <Route
+              path="/product/category/:categoryID"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} /> <ProductAdmin /> <Footer />
+                </>
+              }
+            />
+            {/* Đăng ký */}
+            <Route
+              path="/auth/register"
+              element={
+                <>
+                  <Header />
+                  <Register />
+                </>
+              }
+            />
+            {/* Đăng nhập */}
+            <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
+            {/*Đổi mật khẩu */}
+            <Route
+              path="/change-password"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ChangePassword />
+                </>
+              }
+            />
+            <Route
+              path="/view-profile"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ViewProfile isLogin={isLogin} />
+                </>
+              }
+            />
+          </Routes>
+          <ToastContainer />
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
+  );
+}
 
-// export default App;
+export default App;
