@@ -11,6 +11,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import AvatarModal from "../hooks/AvatarModal";
 import { toast } from "react-toastify";
+import "./css/Style.css";
 
 function Header({ isLogin, setIsLogin }) {
   const navigate = useNavigate();
@@ -59,15 +60,12 @@ function Header({ isLogin, setIsLogin }) {
       navigate("/auth/login");
     }
   };
-  const hanldeBackToHome = () => {
-    navigate("/home");
-  };
 
   return (
     <div>
-      <Row className=" px-2">
+      <Row className="bg-dark pt-3 pb-3">
         <Col>
-          <div className="d-flex">
+          <h2 class="m-0 display-5 font-weight-semi-bold">
             <Image
               src="/assets/images/avartashop.png"
               alt="H Logo"
@@ -75,13 +73,10 @@ function Header({ isLogin, setIsLogin }) {
               style={{ width: "75px", height: "75px" }}
               onClick={handleOpenAvatarModal}
             />
-            <h4
-              onClick={hanldeBackToHome}
-              class="m-2 display-5 font-weight-semi-bold"
-            >
+            <a href="/productuser" class="text-decoration-none">
               -Tech Store
-            </h4>
-          </div>
+            </a>
+          </h2>
           {/* show ảnh */}
           <AvatarModal show={showAvatarModal} handleClose={handleCloseAvatarModal} imageSrc="/assets/images/avartashop.png" />
         </Col>
@@ -198,6 +193,7 @@ function Header({ isLogin, setIsLogin }) {
                   <Nav.Link href="/auth/login" style={{ color: "white" }}>
                     <Button
                       style={{
+                        backgroundColor: "#DA4E22",
                         padding: "10px 20px",
                       }}
                     >
@@ -209,6 +205,7 @@ function Header({ isLogin, setIsLogin }) {
                   <Nav.Link href="/auth/register" style={{ color: "white" }}>
                     <Button
                       style={{
+                        backgroundColor: "#DA4E22",
                         padding: "10px 20px",
                       }}
                     >
