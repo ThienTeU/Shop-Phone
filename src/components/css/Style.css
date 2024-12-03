@@ -574,7 +574,6 @@ button:hover {
 }
 
 /* Hiệu ứng chuyển động cho AccessDenied */
-
 @keyframes top-to-center {
   0% {
     transform: translateY(-100%);
