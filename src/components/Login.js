@@ -20,8 +20,7 @@ export default function Login({ isLogin, setIsLogin }) {
 
       if (findAccounts) {
         if (findAccounts.isActive === false) {
-          // If the account is not active, redirect to a "Not Found" page or show an error
-          navigate("/not-found"); // Redirect to a "Not Found" page
+          navigate("/accessdenied"); // Chuyển đến trang AccessDenied vì bị vô hiệu hoá
         } else {
           const { password, ...accountData } = findAccounts;
           localStorage.setItem("accounts", JSON.stringify([accountData]));
