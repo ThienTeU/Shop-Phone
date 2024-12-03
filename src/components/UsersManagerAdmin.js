@@ -1,6 +1,6 @@
 import { Container, Row, Col, Form, Button, Table, Spinner, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -12,7 +12,7 @@ export default function UserManagement() {
 
   // Check admin role
   useEffect(() => {
-    const loggedInAccount = JSON.parse(localStorage.getItem("loggedInUser"));
+    const loggedInAccount = JSON.parse(localStorage.getItem("accounts"));
     if (loggedInAccount && loggedInAccount.role === "admin") {
       setIsAdmin(true);
     } else {
@@ -32,6 +32,13 @@ export default function UserManagement() {
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
+
+  //Phân quyền các role User k đc vào các trang của admin
+  const accounts = JSON.parse(localStorage.getItem("accounts")); // Lấy danh sách tài khoản từ localStorage
+  const currentAccount = accounts?.find((account) => account.role === "admin" && account.isActive === true);
+  if (!currentAccount) {
+    return <Navigate to="/accessdenied" />;
+  }
 
   // Handle toggle active status
   const handleToggleActive = (userId, currentStatus) => {
