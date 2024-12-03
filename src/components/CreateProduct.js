@@ -157,60 +157,23 @@ function CreateProduct(props) {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="productId" className="proCreate-form-group">
             <Form.Label className="proCreate-form-label">ID(*)</Form.Label>
-            <Form.Control
-              type="text"
-              name="productId"
-              placeholder="Nhập ID"
-              className="proCreate-form-control"
-            />
+            <Form.Control type="text" name="productId" placeholder="Nhập ID" className="proCreate-form-control" />
           </Form.Group>
           <Form.Group controlId="productName" className="proCreate-form-group">
-            <Form.Label className="proCreate-form-label">
-              Tên Sản Phẩm (*)
-            </Form.Label>
-            <Form.Control
-              type="text"
-              name="productName"
-              placeholder="Nhập tên sản phẩm"
-              className="proCreate-form-control"
-            />
+            <Form.Label className="proCreate-form-label">Tên Sản Phẩm (*)</Form.Label>
+            <Form.Control type="text" name="productName" placeholder="Nhập tên sản phẩm" className="proCreate-form-control" />
           </Form.Group>
           <Form.Group controlId="productPrice" className="proCreate-form-group">
-            <Form.Label className="proCreate-form-label">
-              Giá Tiền (*)
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="productPrice"
-              placeholder="Nhập giá tiền"
-              className="proCreate-form-control"
-            />
+            <Form.Label className="proCreate-form-label">Giá Tiền (*)</Form.Label>
+            <Form.Control type="number" name="productPrice" placeholder="Nhập giá tiền" className="proCreate-form-control" />
           </Form.Group>
-          <Form.Group
-            controlId="productQuantity"
-            className="proCreate-form-group"
-          >
-            <Form.Label className="proCreate-form-label">
-              Số Lượng (*)
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="productQuantity"
-              placeholder="Nhập số lượng"
-              className="proCreate-form-control"
-            />
+          <Form.Group controlId="productQuantity" className="proCreate-form-group">
+            <Form.Label className="proCreate-form-label">Số Lượng (*)</Form.Label>
+            <Form.Control type="number" name="productQuantity" placeholder="Nhập số lượng" className="proCreate-form-control" />
           </Form.Group>
-          <Form.Group
-            controlId="productCategory"
-            className="proCreate-form-group"
-          >
-            <Form.Label className="proCreate-form-label">
-              Thể Loại (*)
-            </Form.Label>
-            <Form.Select
-              name="productCategory"
-              className="proCreate-form-select"
-            >
+          <Form.Group controlId="productCategory" className="proCreate-form-group">
+            <Form.Label className="proCreate-form-label">Thể Loại (*)</Form.Label>
+            <Form.Select name="productCategory" className="proCreate-form-select">
               <option value={""}>Chọn thể loại</option>
               {props.categories.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -219,36 +182,17 @@ function CreateProduct(props) {
               ))}
             </Form.Select>
           </Form.Group>
-          <Form.Group
-            controlId="productDescreption"
-            className="proCreate-form-group"
-          >
+          <Form.Group controlId="productDescreption" className="proCreate-form-group">
             <Form.Label className="proCreate-form-label">Mô tả (*)</Form.Label>
-            <Form.Control
-              as="textarea"
-              name="productDescreption"
-              placeholder="Viết mô tả cho sản phẩm"
-              className="proCreate-form-control"
-            />
+            <Form.Control as="textarea" name="productDescreption" placeholder="Viết mô tả cho sản phẩm" className="proCreate-form-control" />
           </Form.Group>
           <Form.Group controlId="productImageLink">
-            <Form.Label className="proCreate-form-label">
-              Đường dẫn của Ảnh (*)
-            </Form.Label>
-            <Form.Control
-              type="text"
-              name="productImageLink"
-              placeholder="/assets/images/productX.png | Thay X = số"
-            />
+            <Form.Label className="proCreate-form-label">Đường dẫn của Ảnh (*)</Form.Label>
+            <Form.Control type="text" name="productImageLink" placeholder="/assets/images/productX.png | Thay X = số" />
           </Form.Group>
-          <p style={{ color: "red" }}>
-            (*)Lưu ý: Phải đưa ảnh sản phẩm vào folder "/public/assets/images"
-            trước rồi mới điền link. Đặt tên product theo số tiếp theo
-          </p>
+          <p style={{ color: "red" }}>(*)Lưu ý: Phải đưa ảnh sản phẩm vào folder "/public/assets/images" trước rồi mới điền link. Đặt tên product theo số tiếp theo</p>
           <Form.Group controlId="productDate" className="proCreate-form-group">
-            <Form.Label className="proCreate-form-label">
-              Ngày thêm (*)
-            </Form.Label>
+            <Form.Label className="proCreate-form-label">Ngày thêm (*)</Form.Label>
             <Form.Control
               type="date"
               name="productDate"
@@ -258,25 +202,15 @@ function CreateProduct(props) {
               className="proCreate-form-control"
             />
           </Form.Group>
-          <Form.Group
-            controlId="productStatus"
-            className="proCreate-form-group"
-          >
+          <Form.Group controlId="productStatus" className="proCreate-form-group">
             <Form.Label className="proCreate-form-label">Status</Form.Label>
-            <Form.Select
-              name="productStatus"
-              className="proCreate-form-control"
-            >
+            <Form.Select name="productStatus" className="proCreate-form-control">
               <option value="no_select">Chưa Lựa Chọn</option>
               <option value="in_stock">Còn hàng</option>
               <option value="out_of_stock">Hết hàng</option>
             </Form.Select>
           </Form.Group>
-          <Button
-            type="submit"
-            variant="primary"
-            className="proCreate-button-submit"
-          >
+          <Button type="submit" variant="primary" className="proCreate-button-submit">
             Hoàn tất
           </Button>{" "}
           <Button
@@ -292,7 +226,7 @@ function CreateProduct(props) {
           >
             Làm mới
           </Button>
-          <p style={{color:"purple"}}>(*)Kiểm tra kỹ lưỡng thông tin sản phẩm trước khi tạo mới</p>
+          <p style={{ color: "purple" }}>(*)Kiểm tra kỹ lưỡng thông tin sản phẩm trước khi tạo mới</p>
         </Form>
       </Row>
     </Container>
