@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// Ngăn các tài khoản có role == user truy cập vào các trang của ADMIN như productADmin, createProduct
+import "./css/Style.css";
 
 export default function AccessDenied() {
   const bodyStyle = {
