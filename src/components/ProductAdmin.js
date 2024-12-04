@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form, Button, Table, Modal, Pagination } from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { FaTrashAlt, FaEdit } from "react-icons/fa"; // Icons for delete and edit
+import { FaTrashAlt, FaEdit } from "react-icons/fa";
 
 export default function ProductAdmin() {
   const { categoryID } = useParams();
