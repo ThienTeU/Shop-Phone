@@ -69,20 +69,10 @@ const ProductReview = ({ product }) => {
             <Col xs={12} style={{ marginBottom: "10px" }}>
               <div>
                 {[...Array(reviewer.rating)].map((_, starIndex) => (
-                  <FontAwesomeIcon
-                    key={starIndex}
-                    icon={faStar}
-                    color="gold"
-                    style={{ marginRight: "5px" }}
-                  />
+                  <FontAwesomeIcon key={starIndex} icon={faStar} color="gold" style={{ marginRight: "5px" }} />
                 ))}
                 {[...Array(5 - reviewer.rating)].map((_, starIndex) => (
-                  <FontAwesomeIcon
-                    key={starIndex}
-                    icon={faStar}
-                    color="#e4e5e9"
-                    style={{ marginRight: "5px" }}
-                  />
+                  <FontAwesomeIcon key={starIndex} icon={faStar} color="#e4e5e9" style={{ marginRight: "5px" }} />
                 ))}
               </div>
             </Col>

@@ -6,14 +6,7 @@ import { Link } from "react-router-dom";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 
-const ShopProfile = ({
-  handleOpenAvatarModal,
-  handleCloseAvatarModal,
-  handleOpenChat,
-  handleCloseChat,
-  showAvatarModal,
-  showChat,
-}) => {
+const ShopProfile = ({ handleOpenAvatarModal, handleCloseAvatarModal, handleOpenChat, handleCloseChat, showAvatarModal, showChat }) => {
   const stats = [
     { label: "Đánh Giá", value: "68,8k" },
     { label: "Tỉ Lệ Phản Hồi", value: "96%" },
@@ -55,39 +48,19 @@ const ShopProfile = ({
           />
           <h5 className="fw-bold mb-3">H-Tech Store</h5>
           <p className="shop-status text-success d-flex align-items-center justify-content-center mb-3">
-            <span
-              className="status-indicator bg-success rounded-circle me-2"
-              style={{ width: "10px", height: "10px" }}
-            ></span>
+            <span className="status-indicator bg-success rounded-circle me-2" style={{ width: "10px", height: "10px" }}></span>
             Đang hoạt động
           </p>
-          <Button
-            variant="primary"
-            size="sm"
-            className="w-100 d-flex align-items-center justify-content-center mb-2"
-            onClick={handleOpenChat}
-            style={{ gap: "5px" }}
-          >
+          <Button variant="primary" size="sm" className="w-100 d-flex align-items-center justify-content-center mb-2" onClick={handleOpenChat} style={{ gap: "5px" }}>
             <ChatBubbleOutlineIcon />
             Chat Ngay
           </Button>
-          <Button
-            variant="secondary"
-            size="sm"
-            className="w-100 d-flex align-items-center justify-content-center"
-            as={Link}
-            to={`/productuser`}
-            style={{ gap: "5px" }}
-          >
+          <Button variant="secondary" size="sm" className="w-100 d-flex align-items-center justify-content-center" as={Link} to={`/productuser`} style={{ gap: "5px" }}>
             <StorefrontIcon />
             Xem Shop
           </Button>
         </div>
-        <AvatarModal
-          show={showAvatarModal}
-          handleClose={handleCloseAvatarModal}
-          imageSrc="/assets/images/avartashop.png"
-        />
+        <AvatarModal show={showAvatarModal} handleClose={handleCloseAvatarModal} imageSrc="/assets/images/avartashop.png" />
         <ChatWithShop show={showChat} handleClose={handleCloseChat} />
       </Col>
 
@@ -110,9 +83,7 @@ const ShopProfile = ({
                   marginBottom: "20px",
                 }}
               >
-                <h6 style={{ fontSize: "16px", color: "#6c757d" }}>
-                  {stat.label}
-                </h6>
+                <h6 style={{ fontSize: "16px", color: "#6c757d" }}>{stat.label}</h6>
                 <p
                   style={{
                     fontSize: "18px",

@@ -12,13 +12,7 @@ import ShopProfile from "./ShopProfile";
 import { toast } from "react-toastify";
 import ProductReview from "./ProductReview";
 import ContactLink from "./ContactLink";
-import {
-  FaCartArrowDown,
-  FaRegClock,
-  FaShoppingCart,
-  FaInfoCircle,
-  FaHome,
-} from "react-icons/fa";
+import { FaCartArrowDown, FaRegClock, FaShoppingCart, FaInfoCircle, FaHome } from "react-icons/fa";
 import { IoIosFlash } from "react-icons/io";
 export default function ProductDetail({ isLogin }) {
   const { id } = useParams();
@@ -56,8 +50,7 @@ export default function ProductDetail({ isLogin }) {
     );
   };
   // Tạo số lượng đã bán được ngẫu nhiên vì chả bán được cái nào
-  const generateRandomSoldCount = () =>
-    Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+  const generateRandomSoldCount = () => Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
 
   // lấy sản phẩm theo id
   useEffect(() => {
@@ -69,9 +62,7 @@ export default function ProductDetail({ isLogin }) {
         fetch(`http://localhost:9999/products`)
           .then((res) => res.json())
           .then((allProducts) => {
-            const similar = allProducts
-              .filter((p) => p.catID == product.catID && p.id !== product.id)
-              .map((p) => ({ ...p, soldCount: generateRandomSoldCount() }));
+            const similar = allProducts.filter((p) => p.catID == product.catID && p.id !== product.id).map((p) => ({ ...p, soldCount: generateRandomSoldCount() }));
             setSimilarProducts(similar);
           });
       });
@@ -110,8 +101,7 @@ export default function ProductDetail({ isLogin }) {
     const ProductExist = storedCart.findIndex((item) => item.id === product.id);
 
     if (ProductExist !== -1) {
-      storedCart[ProductExist].quantity =
-        (storedCart[ProductExist].quantity || 1) + 1;
+      storedCart[ProductExist].quantity = (storedCart[ProductExist].quantity || 1) + 1;
       updatedCart = [...storedCart];
     } else {
       product.quantity = 1;
@@ -166,30 +156,15 @@ export default function ProductDetail({ isLogin }) {
             <Card>
               <Card.Header className="bg-warning text-center p-3">
                 <div className="d-flex justify-content-center align-items-center">
-                  <span className="text-danger text-decoration-underline me-2">
-                    4.9
-                  </span>
+                  <span className="text-danger text-decoration-underline me-2">4.9</span>
                   <div className="d-flex align-items-center me-2">
                     {[...Array(5)].map((_, index) => (
-                      <FontAwesomeIcon
-                        key={index}
-                        icon={faStar}
-                        className="text-danger"
-                        aria-label="Star Rating"
-                      />
+                      <FontAwesomeIcon key={index} icon={faStar} className="text-danger" aria-label="Star Rating" />
                     ))}
                   </div>
-                  <span className="text-danger text-decoration-underline mx-2">
-                    {generateRandomSoldCount().toLocaleString("vi-VN")} Đánh Giá
-                  </span>
-                  <span className="text-danger text-decoration-underline mx-2">
-                    {generateRandomSoldCount().toLocaleString("vi-VN")} Đã Bán
-                  </span>
-                  <a
-                    href="#!"
-                    className="text-danger text-decoration-none mx-2"
-                    onClick={() => setShowReportModal(true)}
-                  >
+                  <span className="text-danger text-decoration-underline mx-2">{generateRandomSoldCount().toLocaleString("vi-VN")} Đánh Giá</span>
+                  <span className="text-danger text-decoration-underline mx-2">{generateRandomSoldCount().toLocaleString("vi-VN")} Đã Bán</span>
+                  <a href="#!" className="text-danger text-decoration-none mx-2" onClick={() => setShowReportModal(true)}>
                     Tố Cáo Sản Phẩm
                   </a>
                 </div>
@@ -197,13 +172,7 @@ export default function ProductDetail({ isLogin }) {
               <Card.Body className="d-flex">
                 {/* Product Image */}
                 <Col md={4} className="d-flex justify-content-center">
-                  <Card.Img
-                    variant="top"
-                    src={product?.image}
-                    alt={product?.name}
-                    className="img-fluid"
-                    style={{ maxWidth: "80%" }}
-                  />
+                  <Card.Img variant="top" src={product?.image} alt={product?.name} className="img-fluid" style={{ maxWidth: "80%" }} />
                 </Col>
 
                 {/* Product Info */}
@@ -229,9 +198,7 @@ export default function ProductDetail({ isLogin }) {
                       </Col>
                       <Col md={8} className="text-end text-success">
                         <span className="fw-bold">
-                          <FaRegClock
-                            style={{ fontSize: "1.2rem", marginRight: "5px" }}
-                          />
+                          <FaRegClock style={{ fontSize: "1.2rem", marginRight: "5px" }} />
                           Kết thúc trong
                         </span>
                         <Countdown date={date} renderer={renderer} />
@@ -256,33 +223,26 @@ export default function ProductDetail({ isLogin }) {
                             })
                           : "N/A"}
                       </span>
-                      <small className="bg-warning text-white rounded px-2 fw-bold">
-                        -12% GIẢM
-                      </small>
+                      <small className="bg-warning text-white rounded px-2 fw-bold">-12% GIẢM</small>
                     </div>
                     <div>
-                      <strong>Số lượng:</strong> {product?.quantity} sản phẩm có
-                      sẵn
+                      <strong>Số lượng:</strong> {product?.quantity} sản phẩm có sẵn
                     </div>
                     <div>
-                      <strong>Thể loại:</strong>{" "}
-                      {categories?.find((c) => c.id === product.catID)?.name ||
-                        "N/A"}
+                      <strong>Thể loại:</strong> {categories?.find((c) => c.id === product.catID)?.name || "N/A"}
                     </div>
                     <div>
                       <strong>Deal Sốc: </strong> Mua để nhận quà
                     </div>
                     <div>
                       <strong>
-                        <FaInfoCircle
-                          style={{ fontSize: "1rem", marginRight: "5px" }}
-                        />
+                        <FaInfoCircle style={{ fontSize: "1rem", marginRight: "5px" }} />
                         Mô tả sản phẩm:
                       </strong>{" "}
                       {product?.descreption}
                     </div>
                     <div>
-                      <strong>Ngày ra mắt:</strong> {product?.date}
+                      <strong>Ngày ra mắt:</strong> {new Date(product?.date).toLocaleDateString("vi-VN")}
                     </div>
                     <div>
                       <strong>Trạng thái:</strong> {product?.status}
@@ -291,19 +251,13 @@ export default function ProductDetail({ isLogin }) {
                     {/* Add to Cart and Buy Now buttons */}
                     <Row className="mt-3">
                       <Col md={6} className="text-end">
-                        <Button
-                          className="btn btn-primary d-flex align-items-center w-100"
-                          onClick={() => handleAddToCart(product)}
-                        >
+                        <Button className="btn btn-primary d-flex align-items-center w-100" onClick={() => handleAddToCart(product)}>
                           <FaCartArrowDown style={{ marginRight: "8px" }} />
                           Thêm vào giỏ hàng
                         </Button>
                       </Col>
                       <Col md={6}>
-                        <Button
-                          className="btn btn-success ms-3 d-flex align-items-center w-100"
-                          onClick={() => handleAddToCart(product, true)}
-                        >
+                        <Button className="btn btn-success ms-3 d-flex align-items-center w-100" onClick={() => handleAddToCart(product, true)}>
                           <FaShoppingCart style={{ marginRight: "8px" }} />
                           Mua Ngay
                         </Button>
