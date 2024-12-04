@@ -19,6 +19,7 @@ import ViewProfile from "./components/ViewProfile";
 import CreateProduct from "./components/CreateProduct";
 import UserManagement from "./components/UsersManagerAdmin";
 import AccessDenied from "./components/AccessDenied";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -176,6 +177,15 @@ function App() {
                 <>
                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
                   <CreateProduct categories={categories} />
+                </>
+              }
+            />
+            <Route
+              path="/product/detail/:id"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductDetail isLogin={isLogin} setIsLogin={setIsLogin} />
                 </>
               }
             />
