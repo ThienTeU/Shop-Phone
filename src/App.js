@@ -19,8 +19,7 @@ import ViewProfile from "./components/ViewProfile";
 import CreateProduct from "./components/CreateProduct";
 import UserManagement from "./components/UsersManagerAdmin";
 import AccessDenied from "./components/AccessDenied";
-import CreateProduct from "./components/CreateProduct";
-
+import ProductDetail from "./components/ProductDetail";
 function App() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -39,7 +38,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productsRes, categoriesRes] = await Promise.all([fetch("http://localhost:9999/products"), fetch("http://localhost:9999/categories")]);
+        const [productsRes, categoriesRes] = await Promise.all([
+          fetch("http://localhost:9999/products"),
+          fetch("http://localhost:9999/categories"),
+        ]);
         if (!productsRes.ok || !categoriesRes.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -87,7 +89,11 @@ function App() {
                 <Layout>
                   <Navigation />
                   <CarouselHomePage />
-                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductUser
+                    products={products}
+                    isLogin={isLogin}
+                    setIsLogin={setIsLogin}
+                  />
                 </Layout>
               }
             />
@@ -98,7 +104,11 @@ function App() {
               element={
                 <Layout>
                   <Navigation />
-                  <ProductUser products={products} isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductUser
+                    products={products}
+                    isLogin={isLogin}
+                    setIsLogin={setIsLogin}
+                  />
                 </Layout>
               }
             />
@@ -127,7 +137,8 @@ function App() {
               path="/product/category/:categoryID"
               element={
                 <>
-                  <Header isLogin={isLogin} setIsLogin={setIsLogin} /> <ProductAdmin /> <Footer />
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />{" "}
+                  <ProductAdmin /> <Footer />
                 </>
               }
             />
@@ -142,7 +153,10 @@ function App() {
               }
             />
             {/* Đăng nhập */}
-            <Route path="/auth/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
+            <Route
+              path="/auth/login"
+              element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+            />
             {/*Đổi mật khẩu */}
             <Route
               path="/change-password"
@@ -177,6 +191,15 @@ function App() {
                 <>
                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
                   <CreateProduct categories={categories} />
+                </>
+              }
+            />
+            <Route
+              path="/product/detail/:id"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <ProductDetail isLogin={isLogin} setIsLogin={setIsLogin} />
                 </>
               }
             />
