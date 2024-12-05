@@ -664,58 +664,6 @@
       "name": "Thiết bị gia dụng"
     }
   ],
-  "usersWithStatus": [
-    {
-      "id": "1",
-      "name": "Administrator",
-      "email": "admin1@gmail.com",
-      "password": "123456",
-      "dob": "2024-04-18",
-      "gender": "nam",
-      "role": "admin",
-      "isActive": true
-    },
-    {
-      "id": "2",
-      "name": "User4",
-      "email": "user4@gmail.com",
-      "password": "123456",
-      "dob": "2024-04-26",
-      "gender": "nữ",
-      "role": "user",
-      "isActive": true
-    },
-    {
-      "id": "3",
-      "name": "Nguyễn Đức Huy",
-      "email": "huyndhe176876@fpt.edu.vn",
-      "password": "123123",
-      "dob": "2003-03-31",
-      "gender": "nam",
-      "role": "user",
-      "isActive": true
-    },
-    {
-      "id": "4",
-      "name": "Dương Thị Quỳnh Anh",
-      "email": "anhxinhgai@gmail.com",
-      "password": "123456",
-      "dob": "2024-05-29",
-      "gender": "nữ",
-      "role": "user",
-      "isActive": true
-    },
-    {
-      "id": "41",
-      "name": "Khách hàng Five 5",
-      "email": "user5@gmail.com",
-      "password": "123456",
-      "dob": "2024-11-27",
-      "gender": "female",
-      "role": "user",
-      "isActive": true
-    }
-  ],
   "orderDetailsNoLogin": [
     {
       "id": "de57",
@@ -920,6 +868,16 @@
       "password": "123456",
       "dob": "2000-12-12",
       "gender": "nam",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "69441",
+      "name": "Hồ Quang Văn",
+      "email": "quangvan@gmail.com",
+      "password": "123123",
+      "dob": "2000-03-03",
+      "gender": "male",
       "role": "user",
       "isActive": true
     }
