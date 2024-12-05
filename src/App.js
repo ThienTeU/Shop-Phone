@@ -19,7 +19,7 @@ import ViewProfile from "./components/ViewProfile";
 import CreateProduct from "./components/CreateProduct";
 import UserManagement from "./components/UsersManagerAdmin";
 import AccessDenied from "./components/AccessDenied";
-import CreateProduct from "./components/CreateProduct";
+
 
 function App() {
   const [categories, setCategories] = useState([]);
