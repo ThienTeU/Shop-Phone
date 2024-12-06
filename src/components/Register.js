@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -98,7 +99,12 @@ export default function Register() {
         return response.json();
       })
       .then((data) => {
-        alert("Account created successfully!");
+        toast.success(`Tạo tài khoản mới thành công!`, {
+          autoClose: 2500,
+          closeButton: false,
+          hideProgressBar: false,
+          position: "top-center",
+        });
         navigate("/auth/login");
         // Reset form
         setName("");

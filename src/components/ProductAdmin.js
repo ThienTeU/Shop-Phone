@@ -183,7 +183,7 @@ export default function ProductAdmin() {
                       <td>{categories.find((c) => c.id === p.catID)?.name || "N/A"}</td>
                       <td>
                         <Button variant="primary" className="me-2">
-                          <Link to={`/product/${p.id}/edit`} style={{ color: "white", textDecoration: "none" }}>
+                          <Link to={`/product/edit/${p.id}`} style={{ color: "white", textDecoration: "none" }}>
                             <FaEdit /> Sửa
                           </Link>
                         </Button>
