@@ -1049,6 +1049,50 @@
       "status": "Rejected",
       "orderAt": "2024-11-25",
       "reqDate": "2024-11-30"
+    },
+    {
+      "id": "d092",
+      "accountId": "3",
+      "fullName": "têst",
+      "address": "ádasdasdasdasdas",
+      "phone": "123456123213",
+      "email": "tuanvmhe173334@fpt.edu.vn",
+      "product": [
+        {
+          "pid": "P0001",
+          "pName": "Tivi LG UHD - AI Voice",
+          "price": 20000000,
+          "quantity": 1,
+          "image": "/assets/images/product1.png"
+        },
+        {
+          "pid": "P0002",
+          "pName": "Smart Tivi Sony 4kHD",
+          "price": 10000000,
+          "quantity": 1,
+          "image": "/assets/images/product2.png"
+        },
+        {
+          "pid": "P0003",
+          "pName": "Samsung Neo QLED",
+          "price": 11520000,
+          "quantity": 1,
+          "image": "/assets/images/product50.png"
+        },
+        {
+          "pid": "P0004",
+          "pName": "Panasonic JZ2000 OLED",
+          "price": 11000000,
+          "quantity": 1,
+          "image": "/assets/images/product51.png"
+        }
+      ],
+      "vat": "8%",
+      "total": "54.509.458 ₫",
+      "shipping": 0,
+      "status": "Ordered",
+      "orderAt": "2024-12-07",
+      "reqDate": "2024-12-12"
     }
   ],
   "carousels": [

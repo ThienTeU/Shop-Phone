@@ -23,6 +23,8 @@ import ProductDetail from "./components/ProductDetail";
 import EditProduct from "./components/EditProduct";
 import VerifyOrder from "./components/VerifyOrder";
 import Cart from "./components/Cart";
+import OrderTracking from "./components/OrderTracking";
+import OrderManagement from "./components/OrderManagement";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -223,6 +225,26 @@ function App() {
                 <>
                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
                   <VerifyOrder />{" "}
+                </>
+              }
+            />
+            {/* Lịch sửu OrderTracking */}
+            <Route
+              path="/order-tracking"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <OrderTracking />
+                </>
+              }
+            />
+            {/* quản lý đơn hàng */}
+            <Route
+              path="/product/ordermanagement"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <OrderManagement />
                 </>
               }
             />
