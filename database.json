@@ -664,53 +664,6 @@
       "name": "Thiết bị gia dụng"
     }
   ],
-  "accounts": [
-    {
-      "id": "1",
-      "name": "Administrator",
-      "email": "admin1@gmail.com",
-      "password": "123456",
-      "dob": "2024-04-18",
-      "gender": "nam",
-      "role": "admin"
-    },
-    {
-      "id": "2",
-      "name": "User4",
-      "email": "user4@gmail.com",
-      "password": "123456",
-      "dob": "2024-04-26",
-      "gender": "nữ",
-      "role": "user"
-    },
-    {
-      "id": "3",
-      "name": "Nguyễn Đức Huy",
-      "email": "huyndhe176876@fpt.edu.vn",
-      "password": "123123",
-      "dob": "2003-03-31",
-      "gender": "nam",
-      "role": "user"
-    },
-    {
-      "id": "4",
-      "name": "Dương Thị Quỳnh Anh",
-      "email": "anhxinhgai@gmail.com",
-      "password": "123456",
-      "dob": "2024-05-29",
-      "gender": "nữ",
-      "role": "user"
-    },
-    {
-      "id": "41",
-      "name": "Khách hàng Five 5",
-      "email": "user5@gmail.com",
-      "password": "123456",
-      "dob": "2024-11-27",
-      "gender": "female",
-      "role": "user"
-    }
-  ],
   "orderDetailsNoLogin": [
     {
       "id": "de57",
@@ -845,6 +798,88 @@
       ],
       "vat": "8%",
       "total": "181.785.600 ₫"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "name": "Administrator",
+      "email": "admin1@gmail.com",
+      "password": "123456",
+      "dob": "2024-04-18",
+      "gender": "nam",
+      "role": "admin",
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "name": "User4",
+      "email": "user4@gmail.com",
+      "password": "123456",
+      "dob": "2024-04-26",
+      "gender": "nữ",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "3",
+      "name": "Nguyễn Đức Huy",
+      "email": "huyndhe176876@fpt.edu.vn",
+      "password": "123123",
+      "dob": "2003-03-31",
+      "gender": "nam",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "4",
+      "name": "Dương Thị Quỳnh Anh",
+      "email": "anhxinhgai@gmail.com",
+      "password": "123456",
+      "dob": "2024-05-29",
+      "gender": "nữ",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "41",
+      "name": "Khách hàng Five 5",
+      "email": "user5@gmail.com",
+      "password": "123456",
+      "dob": "2024-11-27",
+      "gender": "female",
+      "role": "user",
+      "isActive": false
+    },
+    {
+      "id": "411",
+      "name": "anh",
+      "email": "anhcoi18052002@gmail.com",
+      "password": "123456",
+      "dob": "2000-11-11",
+      "gender": "male",
+      "role": "user",
+      "isActive": false
+    },
+    {
+      "id": "6944",
+      "name": "ad",
+      "email": "nguyenkien200407@gmail.com",
+      "password": "123456",
+      "dob": "2000-12-12",
+      "gender": "nam",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "69441",
+      "name": "Hồ Quang Văn",
+      "email": "quangvan@gmail.com",
+      "password": "123123",
+      "dob": "2000-03-03",
+      "gender": "male",
+      "role": "user",
+      "isActive": true
     }
   ],
   "orderDetailsLogged": [
@@ -1014,6 +1049,50 @@
       "status": "Rejected",
       "orderAt": "2024-11-25",
       "reqDate": "2024-11-30"
+    },
+    {
+      "id": "d092",
+      "accountId": "3",
+      "fullName": "têst",
+      "address": "ádasdasdasdasdas",
+      "phone": "123456123213",
+      "email": "tuanvmhe173334@fpt.edu.vn",
+      "product": [
+        {
+          "pid": "P0001",
+          "pName": "Tivi LG UHD - AI Voice",
+          "price": 20000000,
+          "quantity": 1,
+          "image": "/assets/images/product1.png"
+        },
+        {
+          "pid": "P0002",
+          "pName": "Smart Tivi Sony 4kHD",
+          "price": 10000000,
+          "quantity": 1,
+          "image": "/assets/images/product2.png"
+        },
+        {
+          "pid": "P0003",
+          "pName": "Samsung Neo QLED",
+          "price": 11520000,
+          "quantity": 1,
+          "image": "/assets/images/product50.png"
+        },
+        {
+          "pid": "P0004",
+          "pName": "Panasonic JZ2000 OLED",
+          "price": 11000000,
+          "quantity": 1,
+          "image": "/assets/images/product51.png"
+        }
+      ],
+      "vat": "8%",
+      "total": "54.509.458 ₫",
+      "shipping": 0,
+      "status": "Ordered",
+      "orderAt": "2024-12-07",
+      "reqDate": "2024-12-12"
     }
   ],
   "carousels": [

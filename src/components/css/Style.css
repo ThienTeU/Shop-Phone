@@ -8,10 +8,10 @@
   padding: 0;
 }
 
-.footer h3,p {
+.footer h3,
+p {
   color: white;
 }
-
 
 .footer .social-icons li {
   display: inline-block;
@@ -572,3 +572,50 @@ button:hover {
   background-color: #029ee7;
   color: #000000;
 }
+
+/* Hiệu ứng chuyển động cho AccessDenied */
+@keyframes top-to-center {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes left-to-center {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes right-to-center {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.w3-animate-top {
+  animation: top-to-center 0.6s ease-in-out;
+}
+
+.w3-animate-left {
+  animation: left-to-center 0.6s ease-in-out;
+}
+
+.w3-animate-right {
+  animation: right-to-center 0.6s ease-in-out;
+}
+/* Hết hiệu ứng AccessDenied - Keyframes */
