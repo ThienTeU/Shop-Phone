@@ -20,13 +20,18 @@ import CreateProduct from "./components/CreateProduct";
 import UserManagement from "./components/UsersManagerAdmin";
 import AccessDenied from "./components/AccessDenied";
 import ProductDetail from "./components/ProductDetail";
+import EditProduct from "./components/EditProduct";
+import VerifyOrder from "./components/VerifyOrder";
+import Cart from "./components/Cart";
+import OrderTracking from "./components/OrderTracking";
+import OrderManagement from "./components/OrderManagement";
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
-  const [loading, setLoading] = useState(true); // Loading state for products & categories
-  const [error, setError] = useState(null); // Error state for fetch operations
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     let accounts = JSON.parse(localStorage.getItem("accounts"));
@@ -131,6 +136,16 @@ function App() {
                 </>
               }
             />
+            {/* Chỉnh sửa sản phẩm */}
+            <Route
+              path="/product/edit/:id"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <EditProduct categories={categories} />
+                </>
+              }
+            />
             {/* Đăng ký */}
             <Route
               path="/auth/register"
@@ -153,6 +168,7 @@ function App() {
                 </>
               }
             />
+            {/* Xem thông tin cá nhân */}
             <Route
               path="/view-profile"
               element={
@@ -162,6 +178,7 @@ function App() {
                 </>
               }
             />
+            {/* Trang quản lý các tài khoản */}
             <Route
               path="/User/productUser"
               element={
@@ -170,7 +187,9 @@ function App() {
                 </Layout>
               }
             />
+            {/* Trang Chặn quyền Error 403 */}
             <Route path="/accessdenied" element={<AccessDenied />} />
+            {/* Tạo sản phẩm mới */}
             <Route
               path="/product/create"
               element={
@@ -180,12 +199,52 @@ function App() {
                 </>
               }
             />
+            {/* Chỉnh sửa thông tin sản phẩm */}
             <Route
               path="/product/detail/:id"
               element={
                 <>
                   <Header isLogin={isLogin} setIsLogin={setIsLogin} />
                   <ProductDetail isLogin={isLogin} setIsLogin={setIsLogin} />
+                </>
+              }
+            />
+            {/* Giỏ hàng cho người dùng Logged */}
+            <Route
+              path="/cart"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} /> <Cart isLogin={isLogin} setIsLogin={setIsLogin} />{" "}
+                </>
+              }
+            />
+            {/* Giỏ hàng cho người dùng không Login */}
+            <Route
+              path="/verifyorder"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <VerifyOrder />{" "}
+                </>
+              }
+            />
+            {/* Lịch sửu OrderTracking */}
+            <Route
+              path="/order-tracking"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <OrderTracking />
+                </>
+              }
+            />
+            {/* quản lý đơn hàng */}
+            <Route
+              path="/product/ordermanagement"
+              element={
+                <>
+                  <Header isLogin={isLogin} setIsLogin={setIsLogin} />
+                  <OrderManagement />
                 </>
               }
             />

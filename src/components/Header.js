@@ -91,7 +91,7 @@ function Header({ isLogin, setIsLogin }) {
                             padding: "10px 20px",
                           }}
                         >
-                          Administrator
+                          Giao diện Admin
                         </Button>
                       </Nav.Link>
                     </Nav.Item>
