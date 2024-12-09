@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ export default function Register() {
       dob: dob,
       gender: gender,
       role: isAdmin ? "admin" : "user",
+      isActive: true,
     };
     setAccounts([newAccount, ...accounts]);
 
@@ -97,7 +99,12 @@ export default function Register() {
         return response.json();
       })
       .then((data) => {
-        alert("Account created successfully!");
+        toast.success(`Tạo tài khoản mới thành công!`, {
+          autoClose: 2500,
+          closeButton: false,
+          hideProgressBar: false,
+          position: "top-center",
+        });
         navigate("/auth/login");
         // Reset form
         setName("");
@@ -133,14 +140,7 @@ export default function Register() {
               <label htmlFor="name" className="form-label">
                 Tên Đăng Nhập (*)
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                value={name}
-                placeholder="Đây là tên hiển thị trong Shop"
-                onChange={(e) => setName(e.target.value)}
-              />
+              <input type="text" className="form-control" id="name" value={name} placeholder="Đây là tên hiển thị trong Shop" onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
@@ -195,15 +195,7 @@ export default function Register() {
               <label className="form-label">Giới Tính (*)</label>
               <div>
                 <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="gender"
-                    id="male"
-                    value="male"
-                    checked={gender === "male"}
-                    onChange={() => setGender("male")}
-                  />
+                  <input className="form-check-input" type="radio" name="gender" id="male" value="male" checked={gender === "male"} onChange={() => setGender("male")} />
                   <label className="form-check-label" htmlFor="male">
                     Nam
                   </label>

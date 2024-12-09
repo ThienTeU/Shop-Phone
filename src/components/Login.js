@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Row, Col, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 export default function Login({ isLogin, setIsLogin }) {
   const [email, setEmail] = useState("");
@@ -19,12 +20,21 @@ export default function Login({ isLogin, setIsLogin }) {
       const findAccounts = accounts.find((account) => account.email === email && account.password === password);
 
       if (findAccounts) {
-        const { password, ...accountData } = findAccounts;
-        localStorage.setItem("accounts", JSON.stringify([accountData]));
-        setIsLogin(true);
-        navigate(findAccounts.role === "admin" ? "/productadmin" : "/productuser");
+        if (findAccounts.isActive === false) {
+          navigate("/accessdenied"); // Chuyển đến trang AccessDenied vì bị vô hiệu hoá
+        } else {
+          const { password, ...accountData } = findAccounts;
+          localStorage.setItem("accounts", JSON.stringify([accountData]));
+          setIsLogin(true);
+          navigate(findAccounts.role === "admin" ? "/productadmin" : "/productuser");
+        }
       } else {
-        alert("Sai Email hoặc Mật Khẩu. Vui lòng nhập lại");
+        toast.success(`Sai Email hoặc Mật Khẩu, vui lòng thử lại`, {
+          autoClose: 2500,
+          closeButton: false,
+          hideProgressBar: false,
+          position: "top-center",
+        });
         setIsLogin(false);
       }
     } catch (err) {
