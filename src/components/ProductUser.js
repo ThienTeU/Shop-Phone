@@ -33,9 +33,7 @@ export default function ProductUser({ isLogin }) {
       .then((result) => {
         let searchResult = [];
         if (catID === 0) {
-          searchResult = result.filter(
-            (p) => p.name.toLowerCase().includes(search.toLowerCase()) || p.descreption.toLowerCase().includes(search.toLowerCase())
-          );
+          searchResult = result.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()) || p.descreption.toLowerCase().includes(search.toLowerCase()));
         } else {
           // eslint-disable-next-line eqeqeq
           searchResult = result.filter((p) => p.catID == catID && p.name.toLowerCase().includes(search.toLowerCase()));
@@ -60,6 +58,16 @@ export default function ProductUser({ isLogin }) {
     const ProductExist = storedCart.findIndex((item) => item.id === product.id);
 
     if (ProductExist !== -1) {
+      // Kiểm tra nếu số lượng vượt quá 10
+      if ((storedCart[ProductExist].quantity || 1) >= 10) {
+        toast.success(`Bạn chỉ có thể mua tối đa 10 sản phẩm cho mặt hàng này!`, {
+          autoClose: 2000,
+          closeButton: false,
+          hideProgressBar: true,
+          position: "top-center",
+        });
+        return;
+      }
       storedCart[ProductExist].quantity = (storedCart[ProductExist].quantity || 1) + 1;
       updatedCart = [...storedCart];
     } else {
@@ -67,6 +75,7 @@ export default function ProductUser({ isLogin }) {
       updatedCart = [...storedCart, product];
       updatedCount++; // Tăng số lượng sản phẩm trong giỏ hàng khi thêm sản phẩm mới
     }
+
     setCart(updatedCart);
     setCartCount(updatedCount); // Cập nhật số lượng sản phẩm trong giỏ hàng
     toast.success(`Thêm sản phẩm: ${product.name} thành công!`, {
@@ -76,6 +85,7 @@ export default function ProductUser({ isLogin }) {
       position: "top-right",
     });
   };
+
   // Hàm Show Cart so sánh với Login
   const handleShowCart = () => navigate(isLogin ? "/cart" : "/verifyorder");
   // Hàm sort

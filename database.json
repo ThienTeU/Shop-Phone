@@ -2,14 +2,12 @@
   "products": [
     {
       "id": "P0001",
-      "name": "Tivi LG UHD - AI Voice",
+      "name": "Laptop MSITivi LG UHD - AI Voice",
       "price": 20000000,
       "quantity": 20,
-      "catID": "1",
-      "descreption": "Với công nghệ hiện đại như OLED và QLED, tivi LG mang đến trải nghiệm xem phim tuyệt vời",
+      "category": "1",
       "date": "2024-04-28",
-      "status": "Còn hàng",
-      "image": "/assets/images/product1.png"
+      "status": "in_stock"
     },
     {
       "id": "P0002",
@@ -802,7 +800,7 @@
   ],
   "accounts": [
     {
-      "id": "1",
+      "id": "11mn",
       "name": "Administrator",
       "email": "admin1@gmail.com",
       "password": "123456",
@@ -812,7 +810,7 @@
       "isActive": true
     },
     {
-      "id": "2",
+      "id": "21ag",
       "name": "User4",
       "email": "user4@gmail.com",
       "password": "123456",
@@ -822,7 +820,7 @@
       "isActive": true
     },
     {
-      "id": "3",
+      "id": "32b1",
       "name": "Nguyễn Đức Huy",
       "email": "huyndhe176876@fpt.edu.vn",
       "password": "123123",
@@ -832,17 +830,17 @@
       "isActive": true
     },
     {
-      "id": "4",
+      "id": "43a2",
       "name": "Dương Thị Quỳnh Anh",
-      "email": "anhxinhgai@gmail.com",
+      "email": "anhanh@gmail.com",
       "password": "123456",
       "dob": "2024-05-29",
       "gender": "nữ",
       "role": "user",
-      "isActive": true
+      "isActive": false
     },
     {
-      "id": "41",
+      "id": "43a0",
       "name": "Khách hàng Five 5",
       "email": "user5@gmail.com",
       "password": "123456",
@@ -852,7 +850,7 @@
       "isActive": false
     },
     {
-      "id": "411",
+      "id": "41av",
       "name": "anh",
       "email": "anhcoi18052002@gmail.com",
       "password": "123456",
@@ -862,7 +860,7 @@
       "isActive": false
     },
     {
-      "id": "6944",
+      "id": "6zv9",
       "name": "ad",
       "email": "nguyenkien200407@gmail.com",
       "password": "123456",
@@ -872,12 +870,40 @@
       "isActive": true
     },
     {
-      "id": "69441",
+      "id": "52cc",
       "name": "Hồ Quang Văn",
       "email": "quangvan@gmail.com",
       "password": "123123",
       "dob": "2000-03-03",
       "gender": "male",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "7dce",
+      "name": "Phạm Nguyễn Tuấn Anh",
+      "email": "tuananh@gmail.com",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "8907",
+      "name": "QuangZZ",
+      "email": "quang@gmail.com",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "f1e4",
+      "name": "nguyen",
+      "email": "nguyen@gmail.com",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "d2ba",
+      "name": "QiangH",
+      "email": "quang123@gmail.com",
       "role": "user",
       "isActive": true
     }
@@ -1090,9 +1116,32 @@
       "vat": "8%",
       "total": "54.509.458 ₫",
       "shipping": 0,
-      "status": "Ordered",
+      "status": "Approved",
       "orderAt": "2024-12-07",
       "reqDate": "2024-12-12"
+    },
+    {
+      "id": "53f1",
+      "accountId": "32b1",
+      "fullName": "Người Giàu Online",
+      "address": "Hanoi",
+      "phone": "0999999999",
+      "email": "tuanvmhe173334@fpt.edu.vn",
+      "product": [
+        {
+          "pid": "P0002",
+          "pName": "Smart Tivi Sony 4kHD",
+          "price": 10000000,
+          "quantity": 1,
+          "image": "/assets/images/product2.png"
+        }
+      ],
+      "vat": "8%",
+      "total": "10.800.000 ₫",
+      "shipping": 0,
+      "status": "Ordered",
+      "orderAt": "2024-12-10",
+      "reqDate": "2024-12-13"
     }
   ],
   "carousels": [

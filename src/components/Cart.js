@@ -329,15 +329,39 @@ function Cart() {
                         <input
                           type="number"
                           min="1"
+                          max={10}
                           value={c.quantity}
-                          onChange={(e) => handleQuantityChange(c.id, parseInt(e.target.value) - c.quantity)}
-                          style={{
-                            width: "50px",
-                            textAlign: "center",
-                            margin: "0 5px",
+                          onChange={(e) => {
+                            const newQuantity = parseInt(e.target.value);
+                            if (newQuantity > 10) {
+                              toast.success(`Bạn chỉ có thể mua tối đa 10 sản phẩm trong ngày!`, {
+                                autoClose: 2000,
+                                closeButton: false,
+                                hideProgressBar: true,
+                                position: "top-center",
+                              });
+                              return;
+                            }
+                            handleQuantityChange(c.id, newQuantity - c.quantity);
                           }}
+                          style={{ width: "50px", textAlign: "center", margin: "0 5px" }}
                         />
-                        <Button variant="secondary" size="sm" onClick={() => handleQuantityChange(c.id, 1)}>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            if (c.quantity >= 10) {
+                              toast.success(`Bạn chỉ có thể mua tối đa 10 sản phẩm trong ngày!`, {
+                                autoClose: 2000,
+                                closeButton: false,
+                                hideProgressBar: true,
+                                position: "top-center",
+                              });
+                              return;
+                            }
+                            handleQuantityChange(c.id, 1);
+                          }}
+                        >
                           +
                         </Button>
                       </td>

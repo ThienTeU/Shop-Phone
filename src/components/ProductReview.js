@@ -17,11 +17,11 @@ const ProductReview = ({ product }) => {
 
   const reviewers = [
     { name: "Nguyễn Đức Huy", rating: 5 },
-    { name: "HuyCowsep", rating: 4 },
-    { name: "HuyFaker", rating: 5 },
-    { name: "HuyDepZai", rating: 3 },
-    { name: "Huy Nguyen Duc", rating: 4 },
-    { name: "Bạn H Giấu Tên", rating: 5 },
+    { name: "Nguyễn Kim Quang", rating: 4 },
+    { name: "Tuấn Anh", rating: 5 },
+    { name: "Phúc Nguyên Trịnh", rating: 3 },
+    { name: "Nguyễn Kiên", rating: 4 },
+    { name: "No Name", rating: 5 },
   ];
 
   return (

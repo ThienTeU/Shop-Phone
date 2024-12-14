@@ -1,6 +1,7 @@
 import { Container, Row, Col, Form, Button, Table, Spinner, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -9,6 +10,7 @@ export default function UserManagement() {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [error, setError] = useState(null);
+  const [newUser, setNewUser] = useState({ name: "", email: "", role: "user", isActive: true });
 
   // Check admin role
   useEffect(() => {
@@ -33,8 +35,8 @@ export default function UserManagement() {
       .finally(() => setLoading(false));
   }, []);
 
-  //Phân quyền các role User k đc vào các trang của admin
-  const accounts = JSON.parse(localStorage.getItem("accounts")); // Lấy danh sách tài khoản từ localStorage
+  // Phân quyền các role User k đc vào các trang của admin
+  const accounts = JSON.parse(localStorage.getItem("accounts"));
   const currentAccount = accounts?.find((account) => account.role === "admin" && account.isActive === true);
   if (!currentAccount) {
     return <Navigate to="/accessdenied" />;
@@ -93,6 +95,64 @@ export default function UserManagement() {
     setShowModal(false);
   };
 
+  // Handle add user with validation and duplication check
+  const handleAddUser = () => {
+    let errors = []; // Danh sách lỗi
+
+    // Input validation
+    if (!newUser.name.trim()) {
+      errors.push("Tên người dùng không được để trống.");
+    }
+
+    const email = newUser.email.trim();
+    if (email === "") {
+      errors.push("Email không được để trống.");
+    } else if (!email.includes("@")) {
+      errors.push('Địa chỉ email không hợp lệ: "@" là biểu tượng bắt buộc.');
+    } else if ((email.match(/@/g) || []).length > 1) {
+      errors.push('Địa chỉ email không hợp lệ: chứa 2 biểu tượng "@"');
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errors.push("Địa chỉ email không hợp lệ. Đây không phải là địa chỉ email.");
+    } else if (users?.find((user) => user.email === email)) {
+      errors.push("Địa chỉ email đã tồn tại. Hãy chọn địa chỉ khác.");
+    }
+
+    if (!["user", "admin"].includes(newUser.role)) {
+      errors.push("Vai trò không hợp lệ.");
+    }
+    // Nếu có lỗi, hiển thị thông báo và dừng xử lý
+    if (errors.length > 0) {
+      setError(errors.join("\n"));
+      return;
+    }
+    setError(null); // Clear any previous errors
+    setLoading(true);
+    // Add user to the database
+    fetch("http://localhost:9999/accounts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to add user");
+        return res.json();
+      })
+      .then((user) => {
+        setUsers([...users, user]); // Add the new user to the list
+        setNewUser({ name: "", email: "", role: "user", isActive: true }); // Reset the form
+        toast.success("Thêm người dùng thành công!", {
+          autoClose: 2000,
+          closeButton: false,
+          hideProgressBar: true,
+          position: "top-right",
+        });
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  };
+
   return (
     <Container>
       <Row className="mt-4">
@@ -116,6 +176,28 @@ export default function UserManagement() {
           <h3>Quản Lý Tài Khoản</h3>
           {loading && <Spinner animation="border" />}
           {error && <div className="text-danger mb-3">Error: {error}</div>}
+          <Form className="mb-4">
+            <h5>Thêm Người Dùng</h5>
+            <Row>
+              <Col>
+                <Form.Control placeholder="Tên người dùng" value={newUser.name} onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} />
+              </Col>
+              <Col>
+                <Form.Control type="email" placeholder="Email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} />
+              </Col>
+              <Col>
+                <Form.Select value={newUser.role} onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </Form.Select>
+              </Col>
+              <Col>
+                <Button variant="success" onClick={handleAddUser}>
+                  Thêm
+                </Button>
+              </Col>
+            </Row>
+          </Form>
           <Table hover striped bordered>
             <thead>
               <tr>

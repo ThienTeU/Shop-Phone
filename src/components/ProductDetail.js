@@ -101,6 +101,16 @@ export default function ProductDetail({ isLogin }) {
     const ProductExist = storedCart.findIndex((item) => item.id === product.id);
 
     if (ProductExist !== -1) {
+      // Kiểm tra nếu số lượng vượt quá 10
+      if ((storedCart[ProductExist].quantity || 1) >= 10) {
+        toast.success(`Bạn chỉ có thể mua tối đa 10 sản phẩm cho mặt hàng này!`, {
+          autoClose: 2000,
+          closeButton: false,
+          hideProgressBar: true,
+          position: "top-center",
+        });
+        return;
+      }
       storedCart[ProductExist].quantity = (storedCart[ProductExist].quantity || 1) + 1;
       updatedCart = [...storedCart];
     } else {
@@ -108,6 +118,7 @@ export default function ProductDetail({ isLogin }) {
       updatedCart = [...storedCart, product];
       updatedCount++; // Tăng số lượng sản phẩm trong giỏ hàng khi thêm sản phẩm mới
     }
+
     setCart(updatedCart);
     setCartCount(updatedCount); // Cập nhật số lượng sản phẩm trong giỏ hàng
 
